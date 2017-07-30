@@ -1,0 +1,10 @@
+*~
+/network-security.data
+/ac-comphist.dat
+/abbrev_defs
+/javadoc-cache
+/org-clock-save.el
+/secrets.el
+
+/auto-save-list/
+/elpa/

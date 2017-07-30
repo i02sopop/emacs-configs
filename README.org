@@ -1,0 +1,15 @@
+#+STARTUP: showall hidestars
+
+* Emacs configurations
+This is my personal configurations for emacs. The main configuration file is
+`init.sls`, and it's divided in several logical files included from init.sls.
+
+** Org-mode
+Agenda
+
+** mu4e
+mu4e is a package to manage the email from emacs.
+
+** Secrets
+The passwords and secrets are stored in secrets.el file, that, obviously, are not
+included in the repository.

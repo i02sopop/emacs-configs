@@ -1,0 +1,455 @@
+(use-package dash
+  :ensure dash-functional
+  :config
+  (dash-enable-font-lock))
+
+(use-package mu4e
+  :load-path "/usr/share/emacs/site-lisp/mu4e"
+  :commands mu4e
+  :bind (("\C-c\C-u" . mu4e-update-index)
+		 ("\C-c\C-s" . mu4e-headers-change-sorting)
+		 ([f1] . mu4e-in-new-frame))
+  :config
+  ;; use imagemagick, if available
+  (when (fboundp 'imagemagick-register-types)
+	(imagemagick-register-types))
+
+  ;; message view action
+  (defun mu4e-msgv-action-view-in-browser (msg)
+	"View the body of the message in a web browser."
+	(interactive)
+	(let ((html (mu4e-message-field msg :body-html))
+		  (txt (mu4e-message-field msg :body-txt))
+		  (tmpfile (format "/tmp/%d.html" (random))))
+	  (unless (or html txt)
+		(mu4e-error "No body part for this message"))
+	  (with-temp-buffer
+		;; simplistic -- but note that it's only an example...
+		(insert
+		 (or
+		  (concat "<html><head><meta http-equiv=\"content-type\" content=\"text/html;charset=UTF-8\">" html)
+		  (concat "<pre>" txt "</pre>")))
+		(write-file tmpfile)
+		(browse-url-of-buffer-with-firefox (concat "file://" tmpfile)))))
+
+  ;; when you reply to a message, use the identity that the mail was sent to
+  ;; the cpbotha variation -- function that checks to, cc and bcc fields
+  (defun cpb-mu4e-is-message-to (msg rx)
+	"Check if to, cc or bcc field in MSG has any address in RX."
+	(or (mu4e-message-contact-field-matches msg :to rx)
+		(mu4e-message-contact-field-matches msg :cc rx)
+		(mu4e-message-contact-field-matches msg :bcc rx)))
+
+  ;; we only do something if we recognize something (i.e. no stupid default)
+  (add-hook 'mu4e-compose-pre-hook
+			(defun my-set-from-address ()
+			  "Set current identity based on to, cc, bcc of original."
+			  (let ((msg mu4e-compose-parent-message)) ;; msg is shorter...
+				(if msg
+					(cond
+					 ((cpb-mu4e-is-message-to msg (list "palvarez@ritho.net"))
+					  (setq  user-mail-address "palvarez@ritho.net"))
+					 ((cpb-mu4e-is-message-to msg (list "ritho@schibstediberica.es"))
+					  (setq  user-mail-address "ritho@schibstediberica.es"))
+					 ((cpb-mu4e-is-message-to msg (list "ritho@schibsted.com"))
+					  (setq  user-mail-address "ritho@schibsted.com"))
+					 ((cpb-mu4e-is-message-to msg (list "pablo.alvarez@schibsted.com"))
+					  (setq  user-mail-address "pablo.alvarez@schibsted.com"))
+					 ((cpb-mu4e-is-message-to msg (list "pablo.alvarez@schibsted.com.mx"))
+					  (setq  user-mail-address "pablo.alvarez@schibsted.com.mx"))
+					 ((cpb-mu4e-is-message-to msg "i02sopop@gmail.com")
+					  (setq  user-mail-address "i02sopop@gmail.com"))
+					 ((cpb-mu4e-is-message-to msg "palvarez@vintagram.es")
+					  (setq  user-mail-address "palvarez@vintagram.es"))
+					 ((cpb-mu4e-is-message-to msg "i02sopop@ritho.net")
+					  (setq  user-mail-address "i02sopop@ritho.net")))))))
+
+  ;; convenience function for starting the whole mu4e in its own frame
+  ;; posted by the author of mu4e on the mailing list
+  (defun mu4e-in-new-frame ()
+	"Start mu4e in new frame."
+	(interactive)
+	(select-frame (make-frame))
+	(mu4e))
+
+  ;; Email
+  ;; path to our Maildir directory
+  (setq mu4e-maildir (expand-file-name "~/.local/share/local-mail"))
+  (setq mu4e-attachment-dir  "~/Downloads")
+  (setq mu4e-headers-results-limit 2000)
+
+  ;; the next are relative to `mu4e-maildir'
+  ;; instead of strings, they can be functions too, see
+  ;; their docstring or the chapter 'Dynamic folders'
+  (setq mu4e-sent-folder   "/sent-mail"
+		mu4e-drafts-folder "/drafts"
+		mu4e-trash-folder  "/trash"
+		mu4e-refile-folder "/archive")
+
+  (setq mu4e-auto-retrieve-keys 't)
+  (setq mu4e-compose-auto-include-date 't)
+  (setq mu4e-compose-dont-reply-to-self 't)
+  (setq mu4e-compose-signature
+		"Pablo Álvarez de Sotomayor Posadillo
+ Bachelor Degree in Computer Science
+           http://ritho.net
+    http://blogs.fsfe.org/palvarez
+    \"Of all the things I've lost,
+      I miss my mind the most.\"")
+
+  (setq mu4e-user-mail-address-list
+		'("i02sopop@ritho.net"
+		  "palvarez@ritho.net"
+		  "i02sopop@gmail.com"
+		  "ritho@schibstediberica.es"
+		  "ritho@schibsted.com"
+		  "pablo.alvarez@schibsted.com"
+		  "pablo.alvarez@schibsted.com.mx"
+		  "palvarez@vintagram.es"))
+
+  (setq user-mail-address "palvarez@ritho.net"
+		user-full-name  "Pablo Alvarez de Sotomayor Posadillo")
+
+  (setq mu4e-view-show-addresses 't)
+  (setq mu4e-view-show-images 't)
+  (setq mu4e-view-image-max-width '1920)
+  (setq mu4e-view-image-max-height '1080)
+  (setq mu4e-save-multiple-attachments-without-asking 't)
+  (setq mu4e-maildir-shortcuts '(("/archive" . ?a)
+								 ("/entrada" . ?i)
+								 ("/Schibsted" . ?w)
+								 ("/sent-mail" . ?s)))
+
+  ;; don't keep message buffers around
+  (setq message-kill-buffer-on-exit 't)
+
+  ;; use 'fancy' non-ascii characters in various places in mu4e
+  (setq mu4e-use-fancy-chars nil)
+
+  ;; This is needed to allow msmtp to do its magic:
+  (setq message-sendmail-f-is-evil 't)
+
+  ;; tell message-mode how to send mail
+  (setq message-send-mail-function 'message-send-mail-with-sendmail)
+  (setq sendmail-program "~/bin/msmtp-enqueue")
+
+  (setq mu4e-get-mail-command "fetchmail -v")
+
+  (define-key 'mu4e-view-mode-map "f" 'browse-url-of-buffer-with-firefox)
+  (define-key 'mu4e-view-mode-map "l" 'el-pocket-add-url)
+  (define-key mu4e-main-mode-map (kbd "<f1>") 'cpb-mu4e-palvarez-ritho)
+  (define-key mu4e-main-mode-map (kbd "<f2>") 'cpb-mu4e-schibstediberica)
+  (define-key mu4e-main-mode-map (kbd "<f3>") 'cpb-mu4e-schibsted)
+  (define-key mu4e-main-mode-map (kbd "<f4>") 'cpb-mu4e-i02sopop-gmail)
+  (define-key mu4e-main-mode-map (kbd "<f5>") 'cpb-mu4e-palvarez-vintagram)
+  (define-key mu4e-main-mode-map (kbd "<f6>") 'cpb-mu4e-i02sopop-ritho)
+
+  (add-to-list 'mu4e-view-actions '("View in browser" . mu4e-msgv-action-view-in-browser) t)
+  ) ;; end of use-package
+
+(use-package mu4e-maildirs-extension
+  :ensure t
+  :config
+  (setq mu4e-maildirs-extension-parallel-processes 8)
+  (setq mu4e-maildirs-extension-hide-empty-maildirs 't)
+  (setq mu4e-maildirs-extension-custom-list '("/advocate"
+											  "/alacena"
+											  "/android-building"
+											  "/android-contributors"
+											  "/android-kernel"
+											  "/android-market"
+											  "/announce-fsfe"
+											  "/anuncios-fsfla"
+											  "/archive"
+											  "/auctex"
+											  "/auctex-commit"
+											  "/auctex-devel"
+											  "/auctex-diffs"
+											  "/aula-linux"
+											  "/autoconf"
+											  "/autoconf-commit"
+											  "/autoconf-patches"
+											  "/automake"
+											  "/automake-commit"
+											  "/automake-ng"
+											  "/automake-patches"
+											  "/autotools-announce"
+											  "/avisoswiki"
+											  "/bash-announce"
+											  "/bikhir-logwatch"
+											  "/bioconstruccion"
+											  "/Bomnegocio"
+											  "/booth-fsfe"
+											  "/bootstrap"
+											  "/bug-autogen"
+											  "/bug-bash"
+											  "/bug-binutils"
+											  "/bug-bison"
+											  "/bug-findutils"
+											  "/bug-gdb"
+											  "/bug-gettext"
+											  "/bug-glibc"
+											  "/bug-global"
+											  "/bug-gnu-emacs"
+											  "/bug-gnu-utils"
+											  "/bug-grep"
+											  "/bug-hurd"
+											  "/bug-inetutils"
+											  "/bug-mailutils"
+											  "/bug-make"
+											  "/bug-powerguru"
+											  "/build-inetutils"
+											  "/bulmages"
+											  "/cafe"
+											  "/carrera"
+											  "/cherokee-commits"
+											  "/cherokee-dev"
+											  "/coconet-commits"
+											  "/colinaroja"
+											  "/commit-gnuradio"
+											  "/commit-inetutils"
+											  "/commit-mailutils"
+											  "/consumo"
+											  "/contabilidad"
+											  "/coreutils"
+											  "/coreutils-announce"
+											  "/courses"
+											  "/c-rtmp-server"
+											  "/cuentas"
+											  "/david-kadavy"
+											  "/ddd"
+											  "/debian"
+											  "/debian-announce"
+											  "/debian-changes"
+											  "/debian-devel"
+											  "/debian-devel-announce"
+											  "/debian-devel-spanish"
+											  "/debian-hurd"
+											  "/debian-i18n"
+											  "/debian-jobs"
+											  "/debian-knoppix"
+											  "/debian-l10n-spanish"
+											  "/debian-mentors"
+											  "/debian-mobile"
+											  "/debian-newmaint"
+											  "/debian-news"
+											  "/debian-news-spanish"
+											  "/debian-policy"
+											  "/debian-powerpc"
+											  "/debian-project"
+											  "/debian-python"
+											  "/debian-qa"
+											  "/debian-qa-packages"
+											  "/debian-release"
+											  "/debian-science"
+											  "/debian-security"
+											  "/debian-security-announce"
+											  "/debian-security-tracker"
+											  "/debian-testing"
+											  "/debian-vote"
+											  "/debian-wnpp"
+											  "/debian-women"
+											  "/debian-www"
+											  "/dicussion-fsfla"
+											  "/discuss-gnuradio"
+											  "/discussion-fsfe"
+											  "/docuforum"
+											  "/donw"
+											  "/drafts"
+											  "/elgg"
+											  "/emacs-commits"
+											  "/emacs-devel"
+											  "/emacs-orgmode"
+											  "/encuentro-social"
+											  "/entrada"
+											  "/epla"
+											  "/es-help"
+											  "/es-news"
+											  "/es-parl"
+											  "/estandares-abiertos"
+											  "/familia"
+											  "/fb.ie"
+											  "/ffii"
+											  "/ffii-latin"
+											  "/findutils-patches"
+											  "/friends"
+											  "/fsfe"
+											  "/fsfe-es"
+											  "/fsfe-translators"
+											  "/full-disclosure"
+											  "/g1-hackers"
+											  "/gcubo-anuncios"
+											  "/gcubo-ayuda"
+											  "/gcubo-cicode"
+											  "/gcubo-general"
+											  "/gdb"
+											  "/github"
+											  "/gleducar"
+											  "/glibc-bugs"
+											  "/gnu-c"
+											  "/gnu-emacs-sources"
+											  "/gnu-system-discuss"
+											  "/gnutls-commit"
+											  "/gnutls-devel"
+											  "/gong-devel"
+											  "/gpul-avisos"
+											  "/grep-commit"
+											  "/grulla"
+											  "/gulex"
+											  "/gul-uc3m"
+											  "/hacklabs"
+											  "/hackmeeting"
+											  "/help-bison"
+											  "/help-gnutls"
+											  "/help-gnu-utils"
+											  "/help-hurd"
+											  "/hispalinux"
+											  "/home"
+											  "/hurd-devel"
+											  "/indy-cordoba"
+											  "/INET"
+											  "/info-gnu-emacs"
+											  "/info-gnu-events"
+											  "/jabber-admin"
+											  "/jornadas"
+											  "/kirinki-commits"
+											  "/laura_ribas"
+											  "/libav-devel"
+											  "/libc-alpha"
+											  "/libc-announce"
+											  "/libc-help"
+											  "/libc-ports"
+											  "/libreoffice"
+											  "/licor"
+											  "/licor-anuncios"
+											  "/licor-socios"
+											  "/licor-usuarios"
+											  "/linkedin"
+											  "/linuxayuda"
+											  "/linuxec"
+											  "/linux_kernel"
+											  "/linux-madrid"
+											  "/linux_party"
+											  "/linuxppc-dev"
+											  "/linux-ppc-es"
+											  "/m4h-general"
+											  "/mailman-announces"
+											  "/mailman-coders"
+											  "/mailman-developers"
+											  "/make-alpha"
+											  "/make-commits"
+											  "/minix"
+											  "/mongodb"
+											  "/mysql"
+											  "/n-1"
+											  "/Nagios"
+											  "/nanoges"
+											  "/news"
+											  "/nextgen"
+											  "/noooxml"
+											  "/noooxml-latin"
+											  "/ooxml-es"
+											  "/ooxml-latin"
+											  "/openstandards"
+											  "/opentia"
+											  "/Oreilly"
+											  "/outbox"
+											  "/pabellon"
+											  "/patents"
+											  "/pdf-devel"
+											  "/phabricator-dev"
+											  "/pidgin-devel"
+											  "/plone"
+											  "/powerguru"
+											  "/powerguru-commit"
+											  "/press-release"
+											  "/press-release-es"
+											  "/psql-hackers"
+											  "/python-es"
+											  "/red_cordoba"
+											  "/redis-db"
+											  "/rehuerta"
+											  "/ritho-commits"
+											  "/ritholution"
+											  "/ritho.net"
+											  "/rivol-commits"
+											  "/rss"
+											  "/rss/adam_nuttall"
+											  "/rss/aldea"
+											  "/rss/antirez"
+											  "/rss/barrapunto"
+											  "/rss/bulmages"
+											  "/rss/dcordero"
+											  "/rss/debian_sysadmins"
+											  "/rss/desencadenado"
+											  "/rss/dtrace"
+											  "/rss/engadget"
+											  "/rss/google_testing"
+											  "/rss/hacker-news"
+											  "/rss/howto_geek"
+											  "/rss/kernel_planet"
+											  "/rss/kriptopolis"
+											  "/rss/linux_admin_show"
+											  "/rss/linux_magazine"
+											  "/rss/lwn"
+											  "/rss/maddog"
+											  "/rss/malaprensa"
+											  "/rss/medialab"
+											  "/rss/meneame"
+											  "/rss/microsiervos"
+											  "/rss/music_for_programming"
+											  "/rss/nba"
+											  "/rss/neeraj"
+											  "/rss/pornohardware"
+											  "/rss/postgres"
+											  "/rss/productivity_sauce"
+											  "/rss/security_art"
+											  "/rss/se-radio"
+											  "/rss/slashdot"
+											  "/rss/xkcd"
+											  "/SAML"
+											  "/Schibsted"
+											  "/Schibsted/Bikhir"
+											  "/Schibsted/chorradas"
+											  "/Schibsted/CustoJusto"
+											  "/Schibsted/dev"
+											  "/Schibsted/Jofogas"
+											  "/Schibsted/Kapaza"
+											  "/Schibsted/Keywi"
+											  "/Schibsted/Nominas"
+											  "/Schibsted/Platform"
+											  "/Schibsted/SNT"
+											  "/Schibsted/stats"
+											  "/Schibsted/Vacaciones"
+											  "/Schibsted/Yapo"
+											  "/Segundamano MX"
+											  "/sent-mail"
+											  "/SMMX"
+											  "/SMS"
+											  "/socios-hispalinux"
+											  "/spam"
+											  "/Spam"
+											  "/squirrelmail-devel"
+											  "/system-hackers"
+											  "/templates"
+											  "/Tori"
+											  "/trabajo"
+											  "/tramp-devel"
+											  "/trash"
+											  "/uk-parl"
+											  "/vertientes-metodicas"
+											  "/viajes"
+											  "/vintagram"
+											  "/vintagram-commits"
+											  "/vintagram-junta"
+											  "/web-cvs-notify"
+											  "/web-fsfe"
+											  "/web-hurd"
+											  "/wp-hackers"
+											  "/wsis-euc"
+											  "/wsis-pct"
+											  "/wsis-sst"))
+
+
+  (mu4e-maildirs-extension))
+
