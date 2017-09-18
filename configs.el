@@ -94,3 +94,7 @@
       ps-line-number-step 10
       ps-print-color-p 'black-white
       ps-number-of-columns 70)
+
+;; Fonts
+(add-to-list 'default-frame-alist '(font . "hack"))
+(set-face-attribute 'default t :font "hack")
