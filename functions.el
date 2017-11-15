@@ -1,8 +1,10 @@
+(require 'url-util)
+
 (defun browse-url-of-buffer-with-firefox (url &optional new-window)
   "Open URL in a new tab in Firefox."
   (interactive (browse-url-interactive-arg "URL: "))
   (let ((cmd (shell-command-to-string
-			  (concat "~/firefox/firefox --new-tab " url))))))
+			  (concat "~/firefox/firefox --new-tab " (url-encode-url url)))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Time functions.

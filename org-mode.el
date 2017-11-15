@@ -77,7 +77,9 @@
 (use-package org-trello
   :ensure t
   :config
-  (setq org-trello-current-prefix-keybinding "C-c t" nil (org-trello)))
+  (setq org-trello-current-prefix-keybinding "C-c t")
+;;  (setq org-trello-files '("~/org/agenda/adlisting-trello.org"))
+  )
 
 (use-package org2blog
   :ensure t
@@ -464,9 +466,10 @@
 (setq org-global-properties (quote (("Effort_ALL" . "0:15 0:30 0:45 1:00 2:00 3:00 4:00 5:00 6:00 0:00")
 				    ("STYLE_ALL" . "habit"))))
 
-(setq org-agenda-time-grid (quote ((daily today remove-match)
-				   #("----------------" 0 16 (org-heading t))
-				   (0000 0100 0200 0300 0400 0500 0600 0700 0800 0900 1000 1100 1200 1300 1400 1500 1600 1700 1800 1900 2000 2100 2200 2300))))
+(setq org-agenda-time-grid (quote ((daily today require-timed remove-match)
+								   (0000 0100 0200 0300 0400 0500 0600 0700 0800 0900 1000 1100 1200 1300 1400 1500 1600 1700 1800 1900 2000 2100 2200 2300)
+								   "......"
+								   "----------------")))
 
 (setq org-blank-before-new-entry (quote ((heading)
 					 (plain-list-item . auto))))

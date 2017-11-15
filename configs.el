@@ -52,6 +52,7 @@
 (global-set-key [M-up] 'move-text-up)
 (global-set-key [M-down] 'move-text-down)
 
+(setq browse-url-browser-function 'browse-url-of-buffer-with-firefox)
 (setq require-final-newline 't)
 (setq make-backup-files nil)
 (setq locale-coding-system 'utf-8)
