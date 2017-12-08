@@ -12,8 +12,8 @@
   (define-key go-mode-map (kbd "C-c C-f") 'gofmt)
   (define-key go-mode-map (kbd "C-c C-d") 'godoc)
   (define-key go-mode-map (kbd "C-c C-a") 'go-import-add)
-  (define-key go-mode-map (kbd "C-8") 'godef-jump)
-  (define-key go-mode-map (kbd "C-u C-8") 'godef-jump-other-window)
+  (define-key go-mode-map (kbd "C-c C-j") 'godef-jump)
+  (define-key go-mode-map (kbd "C-u C-c C-j") 'godef-jump-other-window)
   (define-key go-mode-map (kbd "C-k") 'go-kill)
   (define-key go-mode-map (kbd "M-o") 'go-backward-delete)
   (define-key go-mode-map (kbd "C-c C-r") 'go-remove-unused-imports)
@@ -21,12 +21,18 @@
   (define-key go-mode-map (kbd "C-c t") 'go-add-tags)
   (define-key go-mode-map (kbd "C-x x") 'go-run)
 
-  (setenv "GOROOT" "/usr/lib/go-1.8")
+  (define-key go-mode-map (kbd "C-c C-b") 'pop-tag-mark)       ; Return from whence you came
+  (define-key go-mode-map (kbd "M-p") 'compile)            ; Invoke compiler
+  (define-key go-mode-map (kbd "M-P") 'recompile)          ; Redo most recent compile cmd
+  (define-key go-mode-map (kbd "M-]") 'next-error)         ; Go to next error (or msg)
+  (define-key go-mode-map (kbd "M-[") 'previous-error)     ; Go to previous error or msg
+
+  (setenv "GOROOT" "/usr/lib/go-1.9")
 
   (add-hook 'go-mode-hook (defun go-init-config ()
-							"Set the init configuration for go"
-							(linum-mode 1)
-							(auto-complete-mode t)))
+	"Set the init configuration for go"
+	(linum-mode 1)
+	(auto-complete-mode t)))
   )
 
 (use-package go-complete
@@ -36,7 +42,10 @@
 
 ;; (use-package gotest :ensure t)
 (use-package go-eldoc :ensure t)
-(use-package go-guru :ensure t)
+(use-package go-guru
+  :ensure t
+  :config
+  (go-guru-hl-identifier-mode))
 (use-package go-rename :ensure t)
 (use-package gopher :ensure t)
 (use-package gotests :ensure t)

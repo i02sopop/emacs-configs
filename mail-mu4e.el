@@ -116,9 +116,9 @@
   (setq mu4e-view-image-max-height '1080)
   (setq mu4e-save-multiple-attachments-without-asking 't)
   (setq mu4e-maildir-shortcuts '(("/archive" . ?a)
-								 ("/entrada" . ?i)
-								 ("/Schibsted" . ?w)
-								 ("/sent-mail" . ?s)))
+				 ("/entrada" . ?i)
+				 ("/Schibsted" . ?w)
+				 ("/sent-mail" . ?s)))
 
   ;; don't keep message buffers around
   (setq message-kill-buffer-on-exit 't)
