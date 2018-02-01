@@ -12,6 +12,7 @@
 (load "~/.emacs.d/autocomplete.el")
 (load "~/.emacs.d/flyspell.el")
 (load "~/.emacs.d/yasnippet.el")
+(load "~/.emacs.d/elixir.el")
 (load "~/.emacs.d/php.el")
 (load "~/.emacs.d/ritho-modes.el")
 (load "~/.emacs.d/org-mode.el")

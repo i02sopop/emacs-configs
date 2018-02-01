@@ -169,6 +169,35 @@
 (use-package org-wc
   :ensure t)
 
+;; Check configurations
+(use-package org-notebook
+  :ensure t)
+
+(use-package org-clock-today
+  :ensure t
+  :config
+  (setq org-clock-today-hide-default-org-clock-mode-line 't)
+  (org-clock-today-mode 1))
+
+(use-package org-dashboard
+  :ensure t)
+
+(use-package org-link-travis
+  :ensure t)
+
+(use-package org-mobile-sync
+  :ensure t)
+
+(use-package org-plus-contrib
+  :ensure t)
+
+(use-package org-table-sticky-header
+  :ensure t)
+
+(use-package org2issue
+  :ensure t)
+
+
 (setq global-auto-revert-mode t)
 (setq require-final-newline t)
 (setq split-width-threshold 120)
