@@ -1,7 +1,7 @@
 (use-package alchemist
   :ensure t)
 
-(use-package 
+(use-package distel
   :ensure t)
 
 (use-package elixir-mix
