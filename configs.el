@@ -19,7 +19,6 @@
   (defvar use-package-verbose t)
 (require 'use-package))
 
-
 (setq inhibit-startup-message t)
 (setq inhibit-startup-screen +1)
 
@@ -99,3 +98,10 @@
 ;; Fonts
 (add-to-list 'default-frame-alist '(font . "hack"))
 (set-face-attribute 'default t :font "hack")
+
+(require 'server)
+(setq server-name
+	  (replace-regexp-in-string "\n$" "" (shell-command-to-string "current_project_name")))
+
+(unless (server-running-p (symbol-value 'server-name))
+  (server-start))
