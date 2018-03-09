@@ -1,3 +1,43 @@
+(use-package erlang
+  :ensure t)
+
+(use-package elixir-mode
+  :ensure t
+  :custom
+  (linum-format "%4d \u2502 ")
+  :config
+  (add-to-list 'elixir-mode-hook
+			   (defun enable-linum-mode ()
+				 (linum-mode 1)))
+  )
+
+(use-package elixir-mix
+  :ensure t)
+
+(use-package elixir-yasnippets
+  :ensure t)
+
+(use-package flycheck-credo
+  :ensure t)
+
+(use-package flycheck-dialyxir
+  :ensure t)
+
+(use-package flycheck-dogma
+  :ensure t)
+
+(use-package flycheck-elixir
+  :ensure t)
+
+(use-package flycheck-mix
+  :ensure t)
+
+(use-package flymake-elixir
+  :ensure t)
+
+(use-package edts
+  :ensure t)
+
 (use-package alchemist
   :ensure t
   :config
@@ -33,51 +73,3 @@
 
 (use-package ac-alchemist
   :ensure t)
-
-(use-package distel
-  :ensure t)
-
-(use-package elixir-mix
-  :ensure t)
-
-(use-package elixir-mode
-  :ensure t
-  :custom
-  (linum-format "%4d \u2502 ")
-  (global-linum-mode t)
-  )
-
-(use-package elixir-yasnippets
-  :ensure t)
-
-(use-package flycheck-credo
-  :ensure t)
-
-(use-package flycheck-dialyxir
-  :ensure t)
-
-(use-package flycheck-dogma
-  :ensure t)
-
-(use-package flycheck-elixir
-  :ensure t)
-
-(use-package flycheck-mix
-  :ensure t)
-
-(use-package flymake-elixir
-  :ensure t)
-
-(use-package auto-complete-distel
-  :ensure t)
-
-(use-package distel-completion-lib
-  :ensure t)
-
-(use-package edts
-  :ensure t)
-
-(use-package erlang
-  :ensure t)
-
-;;  :config)
