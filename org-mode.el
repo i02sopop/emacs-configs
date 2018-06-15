@@ -197,6 +197,22 @@
 (use-package org2issue
   :ensure t)
 
+(use-package oauth2
+  :ensure t)
+
+(use-package org-caldav
+  :ensure t
+  :config
+
+  (setq org-caldav-url 'google)
+  (setq org-caldav-calendars
+  '((:calendar-id "pablo.alvarez@schibsted.com"
+				  :files ("~/org/agenda/habits.org" "~/org/agenda/appointments.org" "~/org/agenda/schibsted.org")
+				  :inbox "~/org/agenda/work.org"))))
+
+(setq org-caldav-oauth2-client-id "18366647529-n867275e73vc62kdfe7q6d6nsnerrg5g.apps.googleusercontent.com")
+(setq org-caldav-oauth2-client-secret "ndvQMXGI-CZZYc5925LZdqqO")
+(setq org-icalendar-timezone "America/Mexico_City")
 
 (setq global-auto-revert-mode t)
 (setq require-final-newline t)
