@@ -679,7 +679,9 @@
 							("NOTE" . ?n)
 							("BZFLAG" . ?B)
 							("CANCELLED" . ?c)
-							("REFILE" . ?r)
+							("REFILE" . ?R)
+							("read" . ?r)
+							("view" . ?v)
 							("FLAGGED" . ??))))
 
 ;; Sorting order for tasks on the agenda
@@ -691,25 +693,34 @@
 
 (setq org-super-agenda-groups
 	  '(
-		(:name "Scheduled" :time-grid t :order 1)
-		(:name "Today" :scheduled today :order 2)
-		(:name "Due today" :deadline today :order 3)
-		(:name "Overdue" :deadline past :order 4)
-		(:name "Due soon" :deadline future :order 5)
-		(:name "Started" :todo "STARTED" :order 6)
-		(:name "Waiting" :todo "WAITING|HOLD" :order 7)
-		(:name "Delegated" :todo "DELEGATED" :order 8)
-		(:name "Posponed" :todo "DEFERRED" :order 9)
-		(:name "Next without priority" :and (:todo "NEXT" :not (:priority "A" :priority "B" :priority "C") :discard (:scheduled t)) :order 10)
-		(:name "Next very important" :and (:todo "NEXT" :priority "A") :order 11)
-		(:name "Next important" :and (:todo "NEXT" :priority "B") :order 12)
-		(:name "Next unimportant" :and (:todo "NEXT" :priority "C") :order 13)
-		(:name "Backlog without priority" :and (:todo "TODO" :not (:priority "A" :priority "B" :priority "C") :discard (:scheduled t)) :order 14)
-		(:name "Backlog very important" :and (:todo "TODO" :priority "A") :order 15)
-		(:name "Backlog important" :and (:todo "TODO" :priority "B") :order 16)
-		(:name "Backlog unimportant" :and (:todo "TODO" :priority "C") :order 17)
-		(:name "Cancelled" :todo "CANCELLED" :order 18)
-		(:name "Projects" :todo "PROJECT" :order 19)
+		(:discard (:tag "scheduled"))
+		(:name "To read without priority" :and (:tag "read" :not (:priority "A" :priority "B" :priority "C" :scheduled t)) :order 2)
+		(:name "To read very important" :and (:tag "read" :priority "A" :not (:scheduled t)) :order 3)
+		(:name "To read important" :and (:tag "read" :priority "B" :not (:scheduled t)) :order 4)
+		(:name "To read unimportant" :and (:tag "read" :priority "C" :not (:scheduled t)) :order 5)
+		(:name "To view without priority" :and (:tag "view" :not (:priority "A" :priority "B" :priority "C" :scheduled t)) :order 6)
+		(:name "To view very important" :and (:tag "view" :priority "A" :not (:scheduled t)) :order 7)
+		(:name "To view important" :and (:tag "view" :priority "B" :not (:scheduled t)) :order 8)
+		(:name "To view unimportant" :and (:tag "view" :priority "C" :not (:scheduled t)) :order 9)
+		(:name "Today" :scheduled today :order 10)
+		(:name "Due today" :deadline today :order 11)
+		(:name "Overdue" :deadline past :order 12)
+		(:name "Due soon" :deadline future :order 13)
+		(:name "Started" :todo "STARTED" :order 14)
+		(:name "Waiting" :todo "WAITING|HOLD" :order 15)
+		(:name "Delegated" :todo "DELEGATED" :order 16)
+		(:name "Posponed" :todo "DEFERRED" :order 17)
+		(:name "Next without priority" :and (:todo "NEXT" :not (:priority "A" :priority "B" :priority "C" :scheduled t)) :order 18)
+		(:name "Next very important" :and (:todo "NEXT" :priority "A") :discard (:scheduled t) :order 19)
+		(:name "Next important" :and (:todo "NEXT" :priority "B" :not (:scheduled t)) :order 20)
+		(:name "Next unimportant" :and (:todo "NEXT" :priority "C" :not (:scheduled t)) :order 21)
+		(:name "Backlog without priority" :and (:todo "TODO" :not (:priority "A" :priority "B" :priority "C" :scheduled t)) :order 22)
+		(:name "Backlog very important" :and (:todo "TODO" :priority "A" :not (:scheduled t)) :order 23)
+		(:name "Backlog important" :and (:todo "TODO" :priority "B" :not (:scheduled t)) :order 24)
+		(:name "Backlog unimportant" :and (:todo "TODO" :priority "C" :not (:scheduled t)) :order 25)
+		(:name "Tasks to refile" :tag "REFILE" :order 26)
+		(:name "Cancelled" :todo "CANCELLED" :order 27)
+		(:name "Projects" :todo "PROJECT" :order 28)
 		)
 	  )
 
@@ -723,21 +734,26 @@
 				(org-agenda-sorting-strategy
 				 '(todo-state-down effort-up category-keep))))
 			  (" " "Supermode Agenda"
-			   ((agenda "" nil)
-				(tags "-REFILE/"
+			   ((agenda "" ((org-super-agenda-groups
+							 '((:name "Today" :time-grid t)))))
+				(tags "-REFILE|read|view/"
 					  ((org-agenda-overriding-header "Tasks to Archive")
 					   (org-agenda-skip-function 'bh/skip-non-archivable-tasks)
 					   (org-tags-match-list-sublevels nil)))
-				(tags "REFILE"
-					  ((org-agenda-overriding-header "Tasks to Refile")
-					   (org-tags-match-list-sublevels nil)))
-				(tags-todo "*" ((org-agenda-overriding-header "Tasks to work on"))))
+				(todo "" ((org-agenda-overriding-header "Tasks to work on")
+						  (org-super-agenda-groups org-super-agenda-groups))))
 			   nil)
-			  ("A" "Tasks to Archive" tags "-REFILE/"
+			  ("A" "Tasks to Archive" tags "-REFILE|read|view/"
 			   ((org-agenda-overriding-header "Tasks to Archive")
 				(org-agenda-skip-function 'bh/skip-non-archivable-tasks)
 				(org-tags-match-list-sublevels nil)))
 			  ("r" "Tasks to Refile" tags "REFILE"
+			   ((org-agenda-overriding-header "Tasks to Refile")
+				(org-tags-match-list-sublevels nil)))
+			  ("R" "Tasks to Read" tags "read"
+			   ((org-agenda-overriding-header "Tasks to Read")
+				(org-tags-match-list-sublevels nil)))
+			  ("W" "Tasks to Watch" tags "watch"
 			   ((org-agenda-overriding-header "Tasks to Refile")
 				(org-tags-match-list-sublevels nil)))
 			  ("w" "Waiting Tasks" tags-todo "-CANCELLED/!WAITING|HOLD!DELEGATED|DEFERRED"
