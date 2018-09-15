@@ -99,6 +99,8 @@
 (add-to-list 'default-frame-alist '(font . "hack"))
 (set-face-attribute 'default t :font "hack")
 
+(global-auto-revert-mode 1)
+
 (require 'server)
 (setq server-name
 	  (replace-regexp-in-string "\n$" "" (shell-command-to-string "current_project_name")))
