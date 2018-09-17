@@ -134,7 +134,6 @@
   :ensure t
   :config
   (setq org-trello-current-prefix-keybinding "C-c t")
-  ;;  (setq org-trello-files '("~/org/agenda/adlisting-trello.org"))
   )
 
 (use-package orglink
@@ -249,7 +248,7 @@
 (global-set-key (kbd "\C-cl") 'org-store-link)
 (global-set-key (kbd "\C-ca") 'org-agenda)
 (global-set-key (kbd "\C-cb") 'org-iswitchb)
-(global-set-key (kbd "\C-cf") '(lambda () (interactive) (org-todo "DONE")))
+(global-set-key (kbd "\C-cf") '(lambda () (interactive) (org-todo "DONE") (org-archive-subtree)))
 (global-set-key (kbd "C-M-r") 'org-capture)
 (global-set-key (kbd "C-c r") 'org-capture)
 (global-set-key (kbd "<f12>") 'org-agenda)
@@ -695,6 +694,7 @@
 (setq org-super-agenda-groups
 	  '(
 		(:discard (:tag "scheduled"))
+		(:name "Tasks to refile" :tag "REFILE" :order 1)
 		(:name "To read without priority" :and (:tag "read" :not (:priority "A" :priority "B" :priority "C" :scheduled t)) :order 2)
 		(:name "To read very important" :and (:tag "read" :priority "A" :not (:scheduled t)) :order 3)
 		(:name "To read important" :and (:tag "read" :priority "B" :not (:scheduled t)) :order 4)
@@ -719,9 +719,8 @@
 		(:name "Backlog very important" :and (:todo "TODO" :priority "A" :not (:scheduled t)) :order 23)
 		(:name "Backlog important" :and (:todo "TODO" :priority "B" :not (:scheduled t)) :order 24)
 		(:name "Backlog unimportant" :and (:todo "TODO" :priority "C" :not (:scheduled t)) :order 25)
-		(:name "Tasks to refile" :tag "REFILE" :order 26)
-		(:name "Cancelled" :todo "CANCELLED" :order 27)
-		(:name "Projects" :todo "PROJECT" :order 28)
+		(:name "Cancelled" :todo "CANCELLED" :order 26)
+		(:name "Projects" :todo "PROJECT" :order 27)
 		)
 	  )
 
