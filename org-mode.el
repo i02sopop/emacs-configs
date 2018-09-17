@@ -249,6 +249,7 @@
 (global-set-key (kbd "\C-cl") 'org-store-link)
 (global-set-key (kbd "\C-ca") 'org-agenda)
 (global-set-key (kbd "\C-cb") 'org-iswitchb)
+(global-set-key (kbd "\C-cf") '(lambda () (interactive) (org-todo "DONE")))
 (global-set-key (kbd "C-M-r") 'org-capture)
 (global-set-key (kbd "C-c r") 'org-capture)
 (global-set-key (kbd "<f12>") 'org-agenda)
