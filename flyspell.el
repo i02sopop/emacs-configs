@@ -14,7 +14,7 @@
   (define-key flyspell-mode-map (kbd "C-;") #'flyspell-correct-previous-word-generic)
 
   (setq ispell-program-name (executable-find "hunspell")
-      ispell-dictionary "en_US")
+      ispell-dictionary "es_ES")
 
   (bind-key "C-c S"
           (lambda ()
