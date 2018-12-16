@@ -27,6 +27,7 @@
 (load "~/.emacs.d/mediawiki.el")
 (load "~/.emacs.d/markdown.el")
 (load "~/.emacs.d/word-count.el")
+(load "~/.emacs.d/pocket.el")
 
 (load "~/.emacs.d/functions.el")
 
