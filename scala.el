@@ -1,6 +1,3 @@
-(use-package maker-mode
-  :ensure t)
-
 (use-package sbt-mode
   :commands sbt-start sbt-command
   :config
@@ -12,6 +9,4 @@
    minibuffer-local-completion-map))
 
 (use-package scala-mode
-  :ensure t
-  :config
-  (add-hook 'scala-mode-hook (flycheck-scala-sbt-init)))
+  :ensure t)

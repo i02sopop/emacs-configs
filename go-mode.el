@@ -1,8 +1,8 @@
-(use-package go-add-tags
-  :ensure t
-  :config
-  (custom-set-variables
-   '(go-add-tags-style 'lower-camel-case)))
+;; (use-package go-add-tags
+;;   :ensure t
+;;   :config
+;;   (custom-set-variables
+;;    '(go-add-tags-style 'lower-camel-case)))
 
 (use-package go-mode
   :ensure t
