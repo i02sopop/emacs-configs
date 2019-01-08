@@ -37,9 +37,6 @@
 (use-package org-email
   :ensure t)
 
-(use-package org-fstree
-  :ensure t)
-
 (use-package org2jekyll
   :ensure t
   :config
@@ -194,8 +191,8 @@
 (use-package org-mobile-sync
   :ensure t)
 
-(use-package org-plus-contrib
-  :ensure t)
+;; (use-package org-plus-contrib
+;;   :ensure t)
 
 (use-package org-table-sticky-header
   :ensure t)
@@ -1229,7 +1226,7 @@ When not restricted, skip habits, NEXT tasks and ideas."
 	  ;; Consider only tasks with done todo headings as archivable candidates
 	  (if (member (org-get-todo-state) org-done-keywords)
 		  (let* ((subtree-end (save-excursion (org-end-of-subtree t)))
-				 (daynr (string-to-int (format-time-string "%d" (current-time))))
+				 (daynr (string-to-number (format-time-string "%d" (current-time))))
 				 (a-month-ago (* 60 60 24 (+ daynr 1)))
 				 (last-month (format-time-string "%Y-%m-" (time-subtract (current-time) (seconds-to-time a-month-ago))))
 				 (this-month (format-time-string "%Y-%m-" (current-time)))

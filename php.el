@@ -4,10 +4,10 @@
   (require 'php-ext)
   (add-hook 'php-mode-hook 'php-enable-default-coding-style))
 
-(use-package php+-mode
-  :ensure t
-  :config
-  (php+-mode-setup))
+;; (use-package php+-mode
+;;   :ensure t
+;;   :config
+;;   (php+-mode-setup))
 
 ;; If you use Composer, you might put something like this in ~/project/.dir-locals.el:
 ;; (php-mode . ((php-auto-yasnippet-required-files (list "~/project/vendor/autoload.php"))))
@@ -51,11 +51,11 @@
   ;; "~/projects/devtools/php_codesniffer/MyCompanyStandard")
   )
 
-(use-package anything
-  :ensure t)
+;; (use-package anything
+;;   :ensure t)
 
-(use-package php-completion
-  :ensure t)
+;; (use-package php-completion
+;;   :ensure t)
 
 (use-package php-extras
   :ensure t)
