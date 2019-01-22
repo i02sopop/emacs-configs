@@ -27,7 +27,7 @@
   (define-key go-mode-map (kbd "M-]") 'next-error)         ; Go to next error (or msg)
   (define-key go-mode-map (kbd "M-[") 'previous-error)     ; Go to previous error or msg
 
-  (setenv "GOROOT" "/usr/lib/go-1.10")
+  (setenv "GOROOT" "/usr/lib/go-1.11")
 
   (add-hook 'go-mode-hook (defun go-init-config ()
 	"Set the init configuration for go"
