@@ -16,6 +16,13 @@
   (setq ispell-program-name (executable-find "hunspell")
       ispell-dictionary "es_ES")
 
+  (setq ispell-local-dictionary "es_ES")
+  (setq ispell-local-dictionary-alist
+        ;; Please note the list `("-d" "en_US")` contains ACTUAL parameters passed to hunspell
+        ;; You could use `("-d" "en_US,en_US-med")` to check with multiple dictionaries
+        '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US") nil utf-8)
+         ("es_ES" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "es_ES") nil utf-8)))
+
   (bind-key "C-c S"
           (lambda ()
             (interactive)
