@@ -64,3 +64,9 @@
 (use-package go-playground-cli :ensure t)
 (use-package golint :ensure t)
 (use-package flymake-go :ensure t)
+(use-package flycheck-golangci-lint
+  :ensure t
+  :hook (go-mode . flycheck-golangci-lint-setup)
+  :config
+  (setq flycheck-golangci-lint-config "~/.emacs.d/.golangci.yaml")
+  )
