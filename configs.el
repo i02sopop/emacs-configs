@@ -1,6 +1,6 @@
 (require 'package)
 (setq package-archives
-      '(("ELPA" . "http://tromey.com/elpa/")
+	  '(("ELPA" . "http://tromey.com/elpa/")
 	("gnu" . "http://elpa.gnu.org/packages/")
 	("org" . "http://orgmode.org/elpa/")
 	("marmalade" . "http://marmalade-repo.org/packages/")
@@ -12,9 +12,9 @@
 (setq package-load-list '(all))     ;; List of packages to load
 
 (if (not (package-installed-p 'use-package))
-    (progn
-      (package-refresh-contents)
-      (package-install 'use-package)))
+	(progn
+	  (package-refresh-contents)
+	  (package-install 'use-package)))
 (eval-and-compile
   (defvar use-package-verbose t)
 (require 'use-package))
@@ -81,19 +81,19 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setq ps-paper-type 'a4
-      ps-font-size 10.0
-      ps-print-header nil
-      ps-landscape-mode nil
-      ps-number-of-columns 1
-      ps-top-margin 10
-      ps-left-margin 10
-      ps-right-margin 10
-      ps-inter-column 5
-      ps-font-size 8.25
-      ps-line-number-font-size 10
-      ps-line-number-step 10
-      ps-print-color-p 'black-white
-      ps-number-of-columns 70)
+	  ps-font-size 10.0
+	  ps-print-header nil
+	  ps-landscape-mode nil
+	  ps-number-of-columns 1
+	  ps-top-margin 10
+	  ps-left-margin 10
+	  ps-right-margin 10
+	  ps-inter-column 5
+	  ps-font-size 8.25
+	  ps-line-number-font-size 10
+	  ps-line-number-step 10
+	  ps-print-color-p 'black-white
+	  ps-number-of-columns 70)
 
 ;; Fonts
 (add-to-list 'default-frame-alist '(font . "hack"))

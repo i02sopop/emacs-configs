@@ -51,9 +51,9 @@ Uses `current-date-time-format' for the formatting the date/time."
   (interactive)
   (let* ((dic ispell-current-dictionary)
 	 (change (if (string= dic "castellano8") "american" "castellano8")))
-    (ispell-change-dictionary change)
-    (message "Dictionary switched from %s to %s" dic change)
-    ))
+	(ispell-change-dictionary change)
+	(message "Dictionary switched from %s to %s" dic change)
+	))
 
 ;; (global-set-key (kbd "<f8>")   'fd-switch-dictionary)
 (global-set-key "\C-x\C-d" 'fd-switch-dictionary)

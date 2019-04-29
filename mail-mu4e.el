@@ -76,7 +76,7 @@
   ;; path to our Maildir directory
   (setq mu4e-maildir (expand-file-name "~/.local/share/local-mail"))
   (setq mu4e-attachment-dir  "~/Downloads")
-  (setq mu4e-headers-results-limit 2000)
+  (setq mu4e-headers-results-limit 3000)
 
   ;; the next are relative to `mu4e-maildir'
   ;; instead of strings, they can be functions too, see
