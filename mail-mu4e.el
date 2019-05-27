@@ -10,6 +10,9 @@
 		 ("\C-c\C-s" . mu4e-headers-change-sorting)
 		 ([f1] . mu4e-in-new-frame))
   :config
+  ;;need this for hash access
+  (require 'subr-x)
+
   ;; use imagemagick, if available
   (when (fboundp 'imagemagick-register-types)
 	(imagemagick-register-types))
@@ -40,6 +43,72 @@
 		(mu4e-message-contact-field-matches msg :cc rx)
 		(mu4e-message-contact-field-matches msg :bcc rx)))
 
+  (setq contact-file "/home/i02sopop/org/contacts.txt")
+  (defun read-contact-list ()
+	"Return a list of email addresses"
+	(with-temp-buffer
+	  (insert-file-contents contact-file)
+	  (split-string (buffer-string) "\n" t)))
+
+  ;; code from https://github.com/abo-abo/swiper/issues/596
+  (defun counsel-email-action (contact)
+	(with-ivy-window
+	 (insert contact)))
+
+  ;; bind comma to launch new search
+  (defvar counsel-email-map
+	(let ((map (make-sparse-keymap)))
+	  (define-key map "," 'counsel-email-more)
+	  map))
+
+  (defun counsel-email-more ()
+	"Insert email address and prompt for another."
+	(interactive)
+	(ivy-call)
+	(with-ivy-window
+	 (insert ", "))
+	(delete-minibuffer-contents)
+	(setq ivy-text ""))
+
+  ;; ivy contacts
+  ;; based on http://kitchingroup.cheme.cmu.edu/blog/2015/03/14/A-helm-mu4e-contact-selector/
+  (defun ivy-select-and-insert-contact (&optional start)
+	(interactive)
+	;; make sure mu4e contacts list is updated - I was having
+	;; intermittent problems that this was empty but couldn't see why
+	(mu4e~request-contacts)
+	(let ((eoh ;; end-of-headers
+		   (save-excursion
+			 (goto-char (point-min))
+			 (search-forward-regexp mail-header-separator nil t)))
+		  ;; append full sorted contacts list to favourites and delete duplicates
+		  (contacts-list
+		   (delq nil (delete-dups (append (read-contact-list)
+										  (mu4e~sort-contacts-for-completion
+										   (hash-table-keys mu4e~contacts)))))))
+
+	  ;; only run if we are in the headers section
+	  (when (and eoh (> eoh (point)) (mail-abbrev-in-expansion-header-p))
+		(let* ((end (point))
+			   (start
+				(or start
+					(save-excursion
+					  (re-search-backward "\\(\\`\\|[\n:,]\\)[ \t]*")
+					  (goto-char (match-end 0))
+					  (point))))
+			   (initial-input (buffer-substring-no-properties start end)))
+
+		  (delete-region start end)
+
+		  (ivy-read "Contact: "
+					contacts-list
+					:re-builder #'ivy--regex
+					:sort nil
+					:initial-input initial-input
+					:action 'counsel-email-action
+					:keymap counsel-email-map)
+		  ))))
+
   ;; we only do something if we recognize something (i.e. no stupid default)
   (add-hook 'mu4e-compose-pre-hook
 			(defun my-set-from-address ()
@@ -49,6 +118,8 @@
 					(cond
 					 ((cpb-mu4e-is-message-to msg (list "palvarez@ritho.net"))
 					  (setq  user-mail-address "palvarez@ritho.net"))
+					 ((cpb-mu4e-is-message-to msg (list "p.alvarez@zaleos.net"))
+					  (setq  user-mail-address "p.alvarez@zaleos.net"))
 					 ((cpb-mu4e-is-message-to msg (list "ritho@schibstediberica.es"))
 					  (setq  user-mail-address "ritho@schibstediberica.es"))
 					 ((cpb-mu4e-is-message-to msg (list "ritho@schibsted.com"))
@@ -100,6 +171,7 @@
   (setq mu4e-user-mail-address-list
 		'("i02sopop@ritho.net"
 		  "palvarez@ritho.net"
+		  "p.alvarez@zaleos.net"
 		  "i02sopop@gmail.com"
 		  "ritho@schibstediberica.es"
 		  "ritho@schibsted.com"
@@ -118,6 +190,7 @@
   (setq mu4e-maildir-shortcuts '(("/archive" . ?a)
 				 ("/entrada" . ?i)
 				 ("/Schibsted" . ?w)
+				 ("/zaleos" . ?z)
 				 ("/sent-mail" . ?s)))
 
   ;; don't keep message buffers around
@@ -151,7 +224,7 @@
   :ensure t
   :config
   (setq mu4e-maildirs-extension-parallel-processes 8)
-  (setq mu4e-maildirs-extension-hide-empty-maildirs 't)
+  (setq mu4e-maildirs-extension-hide-empty-maildirs nil)
   (setq mu4e-maildirs-extension-custom-list '("/advocate"
 											  "/alacena"
 											  "/android-building"
@@ -394,6 +467,7 @@
 											  "/rss/howto_geek"
 											  "/rss/kernel_planet"
 											  "/rss/kriptopolis"
+											  "/rss/kubernetes"
 											  "/rss/linux-adictos"
 											  "/rss/linux_admin_show"
 											  "/rss/linux_magazine"
@@ -455,8 +529,8 @@
 											  "/wp-hackers"
 											  "/wsis-euc"
 											  "/wsis-pct"
-											  "/wsis-sst"))
+											  "/wsis-sst"
+											  "/zaleos"))
 
 
   (mu4e-maildirs-extension))
-
