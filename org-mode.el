@@ -6,6 +6,7 @@
   :ensure t
   :config
   (require 'org-mu4e)
+  (setq org-mu4e-link-query-in-headers-mode nil)
   (add-to-list 'auto-mode-alist '("\\.\\(org\\|org_archive\\|txt\\)$" . org-mode))
 
   (require 'org-crypt)

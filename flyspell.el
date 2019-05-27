@@ -33,6 +33,6 @@
 			(lambda ()
 			  (interactive)
 			  (ispell-change-dictionary "en_US")
-			  (flyspell-buffer)))
+			  (flyspell-buffer))))
 
-  (add-hook 'flyspell-mode-hook #'flyspell-correct-auto-mode))
+;; (add-hook 'flyspell-mode-hook #'flyspell-correct-auto-mode))
