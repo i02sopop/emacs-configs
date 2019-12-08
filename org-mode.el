@@ -736,7 +736,7 @@
 			   ((org-agenda-overriding-header "Habits")
 				(org-agenda-sorting-strategy
 				 '(todo-state-down effort-up category-keep))))
-			  (" " "Supermode Agenda"
+			  ("g" "Supermode Agenda"
 			   ((agenda "" ((org-super-agenda-groups
 							 '((:name "Today" :time-grid t)))))
 				(tags "-REFILE|read|view/"
@@ -1397,7 +1397,7 @@ Late deadlines first, then scheduled, then non-late deadlines"
 
 (defun bh/show-org-agenda ()
   (interactive)
-  (switch-to-buffer "*Org Agenda*")
+  (switch-to-buffer "*Org Agenda(g)*")
   (delete-other-windows))
 
 (defun bh/insert-inactive-timestamp ()
