@@ -208,6 +208,14 @@
 
   (setq mu4e-get-mail-command "fetchmail -v")
 
+  ;; Auto-complete email
+  ;; (setq bbdb-mail-user-agent 'mu4e-user-agent)
+  ;; (setq mu4e-view-mode-hook 'bbdb-mua-auto-update)
+  ;; (setq mu4e-compose-complete-addresses nil)
+  ;; (setq bbdb-mua-pop-up t)
+  ;; (setq bbdb-mua-pop-up-window-size 5)
+  ;; (setq mu4e-view-show-addresses t)
+
   (define-key 'mu4e-view-mode-map "f" 'browse-url-of-buffer-with-firefox)
   (define-key 'mu4e-view-mode-map "l" 'el-pocket-add-url)
   (define-key mu4e-main-mode-map (kbd "<f1>") 'cpb-mu4e-palvarez-ritho)

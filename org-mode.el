@@ -147,12 +147,27 @@
   :ensure t)
 
 (use-package bbdb
-  :ensure t)
+  :ensure t
+  :config
+  (require 'bbdb-loaddefs)
+  )
 
 (use-package bbdb-ext
   :ensure t)
 
 (use-package bbdb2erc
+  :ensure t)
+
+(use-package calfw
+  :ensure t)
+
+(use-package calfw-cal
+  :ensure t)
+
+(use-package calfw-gcal
+  :ensure t)
+
+(use-package calfw-org
   :ensure t)
 
 (use-package bpe
@@ -1439,9 +1454,9 @@ Late deadlines first, then scheduled, then non-late deadlines"
 ;; hooks
 ;; orgstruct++-mode is enabled in Gnus message buffers to aid in creating
 ;; structured email messages.
-(add-hook 'message-mode-hook 'orgstruct++-mode 'append)
+;; (add-hook 'message-mode-hook 'orgstruct++-mode 'append)
 (add-hook 'message-mode-hook 'turn-on-auto-fill 'append)
-(add-hook 'message-mode-hook 'bbdb-define-all-aliases 'append)
+;; (add-hook 'message-mode-hook 'bbdb-define-all-aliases 'append)
 (add-hook 'message-mode-hook 'orgtbl-mode 'append)
 (add-hook 'message-mode-hook 'turn-on-flyspell 'append)
 (add-hook 'message-mode-hook

@@ -1,9 +1,14 @@
 (use-package java-file-create :ensure t)
 (use-package java-snippets :ensure t)
 (use-package javarun :ensure t)
-(use-package jdee :ensure t)
 (use-package jtags :ensure t)
 (use-package meghanada :ensure t)
+
+;; (use-package jdee
+;;   :ensure t
+;;   :config
+;;   (setq jdee-server-dir "/home/i02sopop/jars")
+;;   )
 
 (use-package java-imports
   :ensure t
@@ -19,7 +24,7 @@
   :ensure t
   :config
   (global-set-key (kbd "C-h j") 'javadoc-lookup)
-  (javadoc-add-roots "/usr/share/doc/openjdk-8-jdk/api")
+  (javadoc-add-roots "/usr/share/doc/openjdk-13-jdk/api")
   )
 
 (use-package javap-mode
