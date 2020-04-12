@@ -43,7 +43,7 @@
   :config
   (setq org2jekyll-blog-author "Ritho")
   (setq org2jekyll-source-directory (expand-file-name "~/org/blog/"))
-  (setq org2jekyll-jekyll-directory (expand-file-name "~/desarrollo/ritho/github/i02sopop/blog/"))
+  (setq org2jekyll-jekyll-directory (expand-file-name "~/development/github/i02sopop/blog/"))
 
   (setq org2jekyll-jekyll-drafts-dir "")
   (setq org2jekyll-jekyll-posts-dir "_posts/")
