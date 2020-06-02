@@ -137,20 +137,11 @@
 (use-package orglink
   :ensure t)
 
-(use-package orglue
-  :ensure t)
-
-(use-package org-page
-  :ensure t)
-
 (use-package outorg
   :ensure t)
 
 (use-package bbdb
-  :ensure t
-  :config
-  (require 'bbdb-loaddefs)
-  )
+  :ensure t)
 
 (use-package bbdb-ext
   :ensure t)
