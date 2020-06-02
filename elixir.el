@@ -1,11 +1,13 @@
 (use-package erlang
-  :ensure t)
+  :ensure t
+  )
 
 (use-package elixir-mode
   :ensure t
   :custom
   (linum-format "%4d \u2502 ")
   :config
+  (setq edts-erl-sname "ritho")
   (add-to-list 'elixir-mode-hook
 			   (defun enable-linum-mode ()
 				 (linum-mode 1)))

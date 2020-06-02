@@ -1,8 +1,8 @@
-(deftheme ritho-theme
-  "ritho-theme")
+(deftheme ritho
+  "ritho")
 
 (custom-theme-set-faces
- 'ritho-theme
+ 'ritho
 
  '(default ((t (:stipple nil :background "black" :foreground "green" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :family "courier"))))
  '(bmkp-local-file-without-region ((t (:foreground "white"))))
@@ -51,4 +51,4 @@
  '(isearch-fail ((((class color) (min-colors 88) (background light)) (:background "RosyBrown1")) (((class color) (min-colors 88) (background dark)) (:background "red4")) (((class color) (min-colors 16)) (:background "red")) (((class color) (min-colors 8)) (:background "red")) (((class color grayscale)) (:foreground "grey")) (t (:inverse-video t))))
  '(isearch-secondary ((t nil))))
 
-(provide-theme 'ritho-theme)
+(provide-theme 'ritho)
