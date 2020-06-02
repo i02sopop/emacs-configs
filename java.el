@@ -24,7 +24,7 @@
   :ensure t
   :config
   (global-set-key (kbd "C-h j") 'javadoc-lookup)
-  (javadoc-add-roots "/usr/share/doc/openjdk-13-jdk/api")
+  (javadoc-add-roots "/usr/share/doc/openjdk-14-jdk/api")
   )
 
 (use-package javap-mode
