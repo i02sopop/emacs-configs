@@ -33,52 +33,15 @@
 (defun lsp-go-install-save-hooks ()
   (add-hook 'before-save-hook #'lsp-format-buffer t t)
   (add-hook 'before-save-hook #'lsp-organize-imports t t))
-;;(add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
-(add-hook 'go-mode-hook (defun go-init-config ()
-						  "Set the init configuration for go"
-						  (linum-mode 1)
-						  (auto-complete-mode t)
-						  (lsp-go-install-save-hooks)
-						  ))
+
+(add-hook 'go-mode-hook
+		  (defun go-init-config ()
+			"Set the init configuration for go"
+			(linum-mode 1)
+			(auto-complete-mode t)
+			(lsp-go-install-save-hooks)))
 
 (use-package yasnippet
   :ensure t
   :commands yas-minor-mode
   :hook (go-mode . yas-minor-mode))
-
-;; (use-package go-complete
-;;   :ensure t
-;;   :config
-;;   (add-hook 'completion-at-point-functions 'go-complete-at-point))
-
-;; (use-package gotest :ensure t)
-;; (use-package go-guru
-;;   :ensure t
-;;   :config
-;;   (go-guru-hl-identifier-mode))
-
-;; (use-package go-eldoc :ensure t)
-;; (use-package go-rename :ensure t)
-;; (use-package gopher :ensure t)
-;; (use-package gotests :ensure t)
-;; (use-package go-autocomplete :ensure t)
-;; (use-package go-direx :ensure t)
-;; (use-package go-errcheck :ensure t)
-;; (use-package go-play :ensure t)
-;; (use-package go-playground :ensure t)
-;; (use-package go-projectile :ensure t)
-;; (use-package go-scratch :ensure t)
-;; (use-package go-snippets :ensure t)
-;; (use-package go-stacktracer :ensure t)
-;; (use-package go-dlv :ensure t)
-;; (use-package go-gopath :ensure t)
-;; (use-package go-impl :ensure t)
-;; (use-package go-playground-cli :ensure t)
-;; (use-package golint :ensure t)
-;; (use-package flymake-go :ensure t)
-;; (use-package flycheck-golangci-lint
-;;   :ensure t
-;;   :hook (go-mode . flycheck-golangci-lint-setup)
-;;   :config
-;;   (setq flycheck-golangci-lint-config "~/.emacs.d/.golangci.yaml")
-;;   )
