@@ -1,3 +1,44 @@
+(use-package go
+  :ensure t)
+(use-package go-add-tags
+  :ensure t)
+(use-package go-autocomplete
+  :ensure t)
+(use-package go-capf
+  :ensure t)
+(use-package go-complete
+  :ensure t)
+(use-package go-direx
+  :ensure t)
+(use-package go-eldoc
+  :ensure t)
+(use-package go-errcheck
+  :ensure t)
+(use-package go-fill-struct
+  :ensure t)
+(use-package go-gen-test
+  :ensure t)
+(use-package go-gopath
+  :ensure t)
+(use-package go-guru
+  :ensure t)
+(use-package go-imenu
+  :ensure t)
+(use-package go-imports
+  :ensure t)
+(use-package go-mode
+  :ensure t)
+(use-package go-projectile
+  :ensure t)
+(use-package go-rename
+  :ensure t)
+(use-package go-snippets
+  :ensure t)
+(use-package go-stacktracer
+  :ensure t)
+(use-package go-tag
+  :ensure t)
+
 (use-package lsp-mode
   :ensure t
   :commands (lsp lsp-deferred)
@@ -27,6 +68,9 @@
    '(("gopls.completeUnimported" t t)
 	 ("gopls.staticcheck" t t)))
   )
+
+(use-package lsp-docker
+  :ensure t)
 
 ;; Set up before-save hooks to format buffer and add/delete imports.
 ;; Make sure you don't have other gofmt/goimports hooks enabled.

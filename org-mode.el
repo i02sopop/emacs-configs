@@ -38,6 +38,9 @@
 (use-package org-email
   :ensure t)
 
+(use-package org-projectile
+  :ensure t)
+
 (use-package org2jekyll
   :ensure t
   :config
@@ -198,8 +201,8 @@
 (use-package org-mobile-sync
   :ensure t)
 
-;; (use-package org-plus-contrib
-;;   :ensure t)
+(use-package org-plus-contrib
+  :ensure t)
 
 (use-package org-table-sticky-header
   :ensure t)
