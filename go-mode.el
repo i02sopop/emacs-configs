@@ -64,13 +64,26 @@
   (define-key go-mode-map (kbd "M-]") 'next-error)         ; Go to next error (or msg)
   (define-key go-mode-map (kbd "M-[") 'previous-error)     ; Go to previous error or msg
 
+  (setq lsp-gopls-codelens nil)
+  (setq lsp-enable-indentation 't)
+  (setq lsp-enable-on-type-formatting nil)
+  (setq lsp-before-save-edits 't)
+  (setq lsp-enable-completion-at-point 't)
+  (setq lsp-server-trace nil)
+  (setq gc-cons-threshold 100000000)
+  (setq read-process-output-max (* 1024 1024))
+  (setq lsp-prefer-capf t)
+  (setq lsp-idle-delay 0.500)
+  (setq lsp-print-performance t)
+
   (lsp-register-custom-settings
    '(("gopls.completeUnimported" t t)
 	 ("gopls.staticcheck" t t)))
   )
 
-(use-package lsp-docker
-  :ensure t)
+(use-package which-key
+    :config
+    (which-key-mode))
 
 ;; Set up before-save hooks to format buffer and add/delete imports.
 ;; Make sure you don't have other gofmt/goimports hooks enabled.
@@ -82,8 +95,22 @@
 		  (defun go-init-config ()
 			"Set the init configuration for go"
 			(linum-mode 1)
-			(auto-complete-mode t)
+			;;(auto-complete-mode t)
 			(lsp-go-install-save-hooks)))
+
+;; provides fancier overlays.
+(use-package lsp-ui
+  :ensure t
+  :commands lsp-ui-mode)
+
+;; Company mode is a standard completion package that works well with lsp-mode.
+(use-package company
+  :ensure t
+  :config
+  ;; Optionally enable completion-as-you-type behavior.
+  (setq company-idle-delay 0)
+  (setq company-minimum-prefix-length 1))
+
 
 (use-package yasnippet
   :ensure t
