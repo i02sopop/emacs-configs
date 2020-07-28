@@ -177,6 +177,8 @@ linters:
     - gocritic
     - gochecknoinits
     - gochecknoglobals
+    - gofumpt
+    - gofumports
   # enable-all: false
   # disable:
   #   - maligned
