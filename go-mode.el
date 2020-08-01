@@ -72,9 +72,9 @@
   (setq lsp-server-trace nil)
   (setq gc-cons-threshold 100000000)
   (setq read-process-output-max (* 1024 1024))
-  (setq lsp-prefer-capf t)
+  (setq lsp-prefer-capf 't)
   (setq lsp-idle-delay 0.500)
-  (setq lsp-print-performance t)
+  (setq lsp-print-performance 't)
   (setq gofmt-command "gofumports")
 
   (lsp-register-custom-settings
@@ -96,7 +96,7 @@
 		  (defun go-init-config ()
 			"Set the init configuration for go"
 			(linum-mode 1)
-			;;(auto-complete-mode t)
+			(auto-complete-mode -1)
 			(lsp-go-install-save-hooks)))
 
 ;; provides fancier overlays.
