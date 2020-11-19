@@ -31,9 +31,6 @@
 (use-package flycheck-elixir
   :ensure t)
 
-(use-package flycheck-mix
-  :ensure t)
-
 (use-package flymake-elixir
   :ensure t)
 

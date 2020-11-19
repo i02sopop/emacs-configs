@@ -2,9 +2,10 @@
 (setq package-archives
 	  '(("ELPA" . "http://tromey.com/elpa/")
 	("gnu" . "http://elpa.gnu.org/packages/")
-	("org" . "http://orgmode.org/elpa/")
-	("marmalade" . "http://marmalade-repo.org/packages/")))
-	;; ("melpa" . "http://melpa.milkbox.net/packages/")))
+	("melpa" . "https://melpa.org/packages/")
+	("org" . "http://orgmode.org/elpa/")))
+;; http://marmalade-repo.org/packages/ is not working, redirects to
+;; https://marmalade-repo.org/packages/, which doesn't work
 
 (package-initialize)
 (unless package-archive-contents    ;; Refresh the packages descriptions
