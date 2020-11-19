@@ -109,9 +109,6 @@
   (setq org-journal-dir "~/journal/")
   (setq org-journal-enable-encryption nil))
 
-(use-package org-magit
-  :ensure t)
-
 (use-package org-mime
   :ensure t)
 
