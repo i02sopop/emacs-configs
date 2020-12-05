@@ -38,6 +38,14 @@
   :ensure t)
 (use-package go-tag
   :ensure t)
+(use-package go-impl
+  :ensure t)
+(use-package golint
+  :ensure t)
+(use-package gotest
+  :ensure t)
+(use-package go-rename
+  :ensure t)
 
 (use-package lsp-mode
   :ensure t
