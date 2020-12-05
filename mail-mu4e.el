@@ -118,16 +118,10 @@
 					(cond
 					 ((cpb-mu4e-is-message-to msg (list "palvarez@ritho.net"))
 					  (setq  user-mail-address "palvarez@ritho.net"))
-					 ((cpb-mu4e-is-message-to msg (list "p.alvarez@zaleos.net"))
-					  (setq  user-mail-address "p.alvarez@zaleos.net"))
-					 ((cpb-mu4e-is-message-to msg (list "ritho@schibstediberica.es"))
-					  (setq  user-mail-address "ritho@schibstediberica.es"))
-					 ((cpb-mu4e-is-message-to msg (list "ritho@schibsted.com"))
-					  (setq  user-mail-address "ritho@schibsted.com"))
-					 ((cpb-mu4e-is-message-to msg (list "pablo.alvarez@schibsted.com"))
-					  (setq  user-mail-address "pablo.alvarez@schibsted.com"))
-					 ((cpb-mu4e-is-message-to msg (list "pablo.alvarez@schibsted.com.mx"))
-					  (setq  user-mail-address "pablo.alvarez@schibsted.com.mx"))
+					 ((cpb-mu4e-is-message-to msg (list "ritho@ritho.net"))
+					  (setq  user-mail-address "ritho@ritho.net"))
+					 ((cpb-mu4e-is-message-to msg (list "pablo.alvarez@lana.xyz"))
+					  (setq  user-mail-address "pablo.alvarez@lana.xyz"))
 					 ((cpb-mu4e-is-message-to msg "i02sopop@gmail.com")
 					  (setq  user-mail-address "i02sopop@gmail.com"))
 					 ((cpb-mu4e-is-message-to msg "palvarez@vintagram.es")
@@ -171,12 +165,9 @@
   (setq mu4e-user-mail-address-list
 		'("i02sopop@ritho.net"
 		  "palvarez@ritho.net"
-		  "p.alvarez@zaleos.net"
+		  "ritho@ritho.net"
+		  "pablo.alvarez@lana.xyz"
 		  "i02sopop@gmail.com"
-		  "ritho@schibstediberica.es"
-		  "ritho@schibsted.com"
-		  "pablo.alvarez@schibsted.com"
-		  "pablo.alvarez@schibsted.com.mx"
 		  "palvarez@vintagram.es"))
 
   (setq user-mail-address "palvarez@ritho.net"
@@ -190,7 +181,7 @@
   (setq mu4e-maildir-shortcuts '(("/archive" . ?a)
 				 ("/entrada" . ?i)
 				 ("/Schibsted" . ?w)
-				 ("/zaleos" . ?z)
+				 ("/lana" . ?l)
 				 ("/sent-mail" . ?s)))
 
   ;; don't keep message buffers around
@@ -394,6 +385,7 @@
 											  "/jabber-admin"
 											  "/jornadas"
 											  "/kirinki-commits"
+											  "/lana"
 											  "/laura_ribas"
 											  "/libav-devel"
 											  "/libc-alpha"
