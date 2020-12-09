@@ -163,12 +163,25 @@
       I miss my mind the most.\"")
 
   (setq mu4e-user-mail-address-list
-		'("i02sopop@ritho.net"
-		  "palvarez@ritho.net"
-		  "ritho@ritho.net"
-		  "pablo.alvarez@lana.xyz"
+		'("palvarez@ritho.net"
 		  "i02sopop@gmail.com"
-		  "palvarez@vintagram.es"))
+		  "palvarez@vintagram.es"
+		  "i02sopop@ritho.net"
+		  "ritho@ritho.net"
+		  "palvarez@kirinki.net"
+		  "palvarez@kirinki.com"
+		  "palvarez@kirinki.org"
+		  "palvarez@kirinki.es"
+		  "palvarez@kirinki.eu"
+		  "palvarez@linuxcordoba.org"
+		  "ritho@linuxcordoba.org"
+		  "palvarez@ritholution.com"
+		  "ritho@ritholution.com"
+		  "palvarez@ritholution.es"
+		  "ritho@ritholution.es"
+		  "palvarez@ritholution.eu"
+		  "ritho@ritholution.eu"
+		  "pablo.alvarez@lana.xyz"))
 
   (setq user-mail-address "palvarez@ritho.net"
 		user-full-name  "Pablo Alvarez de Sotomayor Posadillo")
@@ -180,7 +193,6 @@
   (setq mu4e-save-multiple-attachments-without-asking 't)
   (setq mu4e-maildir-shortcuts '(("/archive" . ?a)
 				 ("/entrada" . ?i)
-				 ("/Schibsted" . ?w)
 				 ("/lana" . ?l)
 				 ("/sent-mail" . ?s)))
 
@@ -386,6 +398,18 @@
 											  "/jornadas"
 											  "/kirinki-commits"
 											  "/lana"
+											  "/lana/cacao"
+											  "/lana/chile"
+											  "/lana/clubhouse"
+											  "/lana/code_review"
+											  "/lana/gitlab"
+											  "/lana/infrastructure"
+											  "/lana/mexico"
+											  "/lana/notion"
+											  "/lana/payfit"
+											  "/lana/rfc"
+											  "/lana/sentry"
+											  "/lana/trello"
 											  "/laura_ribas"
 											  "/libav-devel"
 											  "/libc-alpha"
@@ -531,6 +555,5 @@
 											  "/wsis-pct"
 											  "/wsis-sst"
 											  "/zaleos"))
-
 
   (mu4e-maildirs-extension))
