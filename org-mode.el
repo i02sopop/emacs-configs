@@ -5,8 +5,6 @@
 (use-package org
   :ensure t
   :config
-  (require 'org-mu4e)
-  (setq org-mu4e-link-query-in-headers-mode nil)
   (add-to-list 'auto-mode-alist '("\\.\\(org\\|org_archive\\|txt\\)$" . org-mode))
 
   (require 'org-crypt)
@@ -33,9 +31,6 @@
   :ensure t)
 
 (use-package org-elisp-help
-  :ensure t)
-
-(use-package org-email
   :ensure t)
 
 (use-package org-projectile
@@ -122,9 +117,6 @@
 (use-package org-present
   :ensure t)
 
-(use-package org-presie
-  :ensure t)
-
 (use-package org-table-comment
   :ensure t)
 
@@ -133,9 +125,6 @@
   :config
   (setq org-trello-current-prefix-keybinding "C-c t")
   )
-
-(use-package orglink
-  :ensure t)
 
 (use-package outorg
   :ensure t)
@@ -196,9 +185,6 @@
   :ensure t)
 
 (use-package org-mobile-sync
-  :ensure t)
-
-(use-package org-plus-contrib
   :ensure t)
 
 (use-package org-table-sticky-header
@@ -614,7 +600,9 @@
 						  org-rmail
 						  org-vm
 						  org-wl
-						  org-w3m)))
+						  org-w3m
+						  org-mu4e
+						  mu4e-org)))
 
 (setq org-speed-commands-user (quote (("0" . ignore)
 									  ("1" . ignore)

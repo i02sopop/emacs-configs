@@ -211,22 +211,12 @@
 
   (setq mu4e-get-mail-command "fetchmail -v")
 
-  ;; Auto-complete email
-  ;; (setq bbdb-mail-user-agent 'mu4e-user-agent)
-  ;; (setq mu4e-view-mode-hook 'bbdb-mua-auto-update)
-  ;; (setq mu4e-compose-complete-addresses nil)
-  ;; (setq bbdb-mua-pop-up t)
-  ;; (setq bbdb-mua-pop-up-window-size 5)
-  ;; (setq mu4e-view-show-addresses t)
-
   (define-key 'mu4e-view-mode-map "f" 'browse-url-of-buffer-with-firefox)
   (define-key 'mu4e-view-mode-map "l" 'el-pocket-add-url)
   (define-key mu4e-main-mode-map (kbd "<f1>") 'cpb-mu4e-palvarez-ritho)
-  (define-key mu4e-main-mode-map (kbd "<f2>") 'cpb-mu4e-schibstediberica)
-  (define-key mu4e-main-mode-map (kbd "<f3>") 'cpb-mu4e-schibsted)
-  (define-key mu4e-main-mode-map (kbd "<f4>") 'cpb-mu4e-i02sopop-gmail)
-  (define-key mu4e-main-mode-map (kbd "<f5>") 'cpb-mu4e-palvarez-vintagram)
-  (define-key mu4e-main-mode-map (kbd "<f6>") 'cpb-mu4e-i02sopop-ritho)
+  (define-key mu4e-main-mode-map (kbd "<f2>") 'cpb-mu4e-i02sopop-gmail)
+  (define-key mu4e-main-mode-map (kbd "<f3>") 'cpb-mu4e-palvarez-vintagram)
+  (define-key mu4e-main-mode-map (kbd "<f4>") 'cpb-mu4e-i02sopop-ritho)
 
   (add-to-list 'mu4e-view-actions '("View in browser" . mu4e-msgv-action-view-in-browser) t)
   ) ;; end of use-package
@@ -557,3 +547,8 @@
 											  "/zaleos"))
 
   (mu4e-maildirs-extension))
+
+(require 'mu4e-org)
+(org-link-set-parameters "mu4e"
+                         :follow #'mu4e-org-open
+                         :store  #'mu4e-org-store-link)
