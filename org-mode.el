@@ -153,9 +153,6 @@
 (use-package bpe
   :ensure t)
 
-(use-package eldoro
-  :ensure t)
-
 (use-package epresent
   :ensure t)
 
