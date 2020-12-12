@@ -81,11 +81,6 @@
   (ac-flyspell-workaround)
   (setq ac-math-unicode-in-math-p t))
 
-(use-package ac-python
-  :ensure t)
-
-;; (require 'auto-complete-config)
-
 (use-package flex-autopair
   :ensure t
   :config
