@@ -219,8 +219,8 @@
 
   (setq org-caldav-url 'google)
   (setq org-caldav-calendars
-		'((:calendar-id "pablo.alvarez@schibsted.com"
-						:files ("~/org/agenda/habits.org" "~/org/agenda/appointments.org" "~/org/agenda/schibsted.org")
+		'((:calendar-id "i02sopop@gmail.com"
+						:files ("~/org/agenda/habits.org" "~/org/agenda/appointments.org")
 						:inbox "~/org/agenda/work.org"))))
 
 (use-package org-super-agenda
