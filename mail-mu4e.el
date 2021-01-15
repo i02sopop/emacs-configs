@@ -120,6 +120,12 @@
 					  (setq  user-mail-address "palvarez@ritho.net"))
 					 ((cpb-mu4e-is-message-to msg (list "ritho@ritho.net"))
 					  (setq  user-mail-address "ritho@ritho.net"))
+					 ((cpb-mu4e-is-message-to msg (list "palvarez@ritho.es"))
+					  (setq  user-mail-address "palvarez@ritho.es"))
+					 ((cpb-mu4e-is-message-to msg (list "ritho@ritho.es"))
+					  (setq  user-mail-address "ritho@ritho.es"))
+					 ((cpb-mu4e-is-message-to msg (list "i02sopop@ritho.es"))
+					  (setq  user-mail-address "i02sopop@ritho.es"))
 					 ((cpb-mu4e-is-message-to msg (list "pablo.alvarez@lana.xyz"))
 					  (setq  user-mail-address "pablo.alvarez@lana.xyz"))
 					 ((cpb-mu4e-is-message-to msg "i02sopop@gmail.com")
@@ -181,6 +187,9 @@
 		  "ritho@ritholution.es"
 		  "palvarez@ritholution.eu"
 		  "ritho@ritholution.eu"
+		  "palvarez@ritho.es"
+		  "ritho@ritho.es"
+		  "i02sopop@ritho.es"
 		  "pablo.alvarez@lana.xyz"))
 
   (setq user-mail-address "palvarez@ritho.net"
