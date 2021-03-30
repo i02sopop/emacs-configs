@@ -12,6 +12,7 @@
   :config
   ;;need this for hash access
   (require 'subr-x)
+  (require 'mu4e-actions)
 
   ;; use imagemagick, if available
   (when (fboundp 'imagemagick-register-types)
@@ -203,6 +204,7 @@
   (setq mu4e-maildir-shortcuts '(("/archive" . ?a)
 				 ("/entrada" . ?i)
 				 ("/lana" . ?l)
+				 ("/lana/gitlab" . ?g)
 				 ("/sent-mail" . ?s)))
 
   ;; don't keep message buffers around
@@ -228,6 +230,7 @@
   (define-key mu4e-main-mode-map (kbd "<f4>") 'cpb-mu4e-i02sopop-ritho)
 
   (add-to-list 'mu4e-view-actions '("View in browser" . mu4e-msgv-action-view-in-browser) t)
+  (add-to-list 'mu4e-view-actions '("Apply mbox" . mu4e-action-git-apply-mbox) t)
   ) ;; end of use-package
 
 (use-package mu4e-maildirs-extension
@@ -561,5 +564,3 @@
 (org-link-set-parameters "mu4e"
                          :follow #'mu4e-org-open
                          :store  #'mu4e-org-store-link)
-
-(require 'mu4e-actions)
