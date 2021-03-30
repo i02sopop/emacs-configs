@@ -22,6 +22,8 @@
 (load "~/.emacs.d/word-count.el")
 (load "~/.emacs.d/pocket.el")
 (load "~/.emacs.d/android.el")
+(load "~/.emacs.d/php.el")
+(load "~/.emacs.d/magit.el")
 
 (load "~/.emacs.d/functions.el")
 
