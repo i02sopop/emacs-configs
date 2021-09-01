@@ -222,8 +222,8 @@
 
   (setq mu4e-get-mail-command "fetchmail -v")
 
-  (define-key 'mu4e-view-mode-map "f" 'browse-url-of-buffer-with-firefox)
-  (define-key 'mu4e-view-mode-map "l" 'el-pocket-add-url)
+  (define-key mu4e-view-mode-map "f" 'browse-url-of-buffer-with-firefox)
+  (define-key mu4e-view-mode-map "l" 'el-pocket-add-url)
   (define-key mu4e-main-mode-map (kbd "<f1>") 'cpb-mu4e-palvarez-ritho)
   (define-key mu4e-main-mode-map (kbd "<f2>") 'cpb-mu4e-i02sopop-gmail)
   (define-key mu4e-main-mode-map (kbd "<f3>") 'cpb-mu4e-palvarez-vintagram)
@@ -231,7 +231,7 @@
 
   (add-to-list 'mu4e-view-actions '("View in browser" . mu4e-msgv-action-view-in-browser) t)
   (add-to-list 'mu4e-view-actions '("Apply mbox" . mu4e-action-git-apply-mbox) t)
-  ) ;; end of use-package
+) ;; end of use-package
 
 (use-package mu4e-maildirs-extension
   :ensure t
