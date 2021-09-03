@@ -309,7 +309,7 @@
 
 (setq org-todo-keywords
 	  (quote ((sequence "PROJECT(P)" "FINISHED(F)")
-			  (sequence "TODO(t)" "NEXT(n)" "STARTED(s)" "DONE(d)")
+			  (sequence "TODO(t)" "NEXT(n)" "STARTED(s)" "REVIEW(r)" "DONE(d)")
 			  (sequence "WAITING(w)" "DELEGATED(l)" "HOLD(h)" "DEFERRED(f)" "CANCELLED(c)" "PHONE(p)"))))
 
 (setq org-todo-keyword-faces
@@ -317,6 +317,7 @@
 			  ("NEXT" :foreground "blue" :weight bold)
 			  ("STARTED" :foreground "yellow" :weight bold)
 			  ("DONE" :foreground "green" :weight bold)
+			  ("REVIEW" :foreground "yellow" :weight bold)
 			  ("WAITING" :foreground "orange" :weight bold)
 			  ("DEFERRED" :foreground "magenta" :weight bold)
 			  ("HOLD" :foreground "orange" :weight bold)
@@ -330,18 +331,19 @@
 	  (quote (("CANCELLED" ("CANCELLED" . t))
 			  ("WAITING" ("WAITING" . t))
 			  ("HOLD" ("WAITING" . t) ("HOLD" . t))
-			  (done ("WAITING") ("HOLD"))
-			  ("TODO" ("WAITING") ("CANCELLED") ("HOLD"))
-			  ("STARTED" ("WAITING") ("CANCELLED") ("HOLD"))
-			  ("NEXT" ("WAITING") ("CANCELLED") ("HOLD"))
-			  ("DONE" ("WAITING") ("CANCELLED") ("HOLD")))))
+			  ("REVIEW" ("REVIEW") ("WAITING" . t))
+			  (done ("WAITING") ("HOLD") ("REVIEW"))
+			  ("TODO" ("WAITING") ("CANCELLED") ("HOLD") ("REVIEW"))
+			  ("STARTED" ("WAITING") ("CANCELLED") ("HOLD") ("REVIEW"))
+			  ("NEXT" ("WAITING") ("CANCELLED") ("HOLD") ("REVIEW"))
+			  ("DONE" ("WAITING") ("CANCELLED") ("HOLD") ("REVIEW")))))
 
 ;; Capture templates for: TODO tasks, Notes, appointments, phone calls, and org-protocol
 (setq org-capture-templates
 	  (quote (("t" "todo" entry (file "~/org/agenda/refile.org")
-			   "* TODO %?\n:PROPERTIES:\n:ORDERED: t\n:LOGGING: TODO(!) NEXT(!) STARTED(!) WAITING(!) DELEGATED(!) HOLD(!) DONE(!) DEFERRED(!) CANCELLED(!) PHONE(!) PROJECT(!) FINISHED(!)\n:DESCRIPTION: -\n:ASSIGNED: ritho\n:DIFICULTY: -\n:CREATION_DATE: %U\n:NOTES: -\n:END:\n%a\n" :clock-in t :clock-resume t)
+			   "* TODO %?\n:PROPERTIES:\n:ORDERED: t\n:LOGGING: TODO(!) NEXT(!) STARTED(!) REVIEW(!) WAITING(!) DELEGATED(!) HOLD(!) DONE(!) DEFERRED(!) CANCELLED(!) PHONE(!) PROJECT(!) FINISHED(!)\n:DESCRIPTION: -\n:ASSIGNED: ritho\n:DIFICULTY: -\n:CREATION_DATE: %U\n:NOTES: -\n:END:\n%a\n" :clock-in t :clock-resume t)
 			  ("r" "respond" entry (file "~/org/agenda/refile.org")
-			   "* TODO Respond to %:from on %:subject\n:PROPERTIES:\n:ORDERED: t\n:LOGGING: TODO(!) NEXT(!) STARTED(!) WAITING(!) DELEGATED(!) HOLD(!) DONE(!) DEFERRED(!) CANCELLED(!) PHONE(!) PROJECT(!) FINISHED(!)\n:DESCRIPTION: -\nASSIGNED: ritho\n:DIFICULTY: Easy\n:CREATION_DATE: %U\n:NOTES: -\n:END:\n%a\n" :clock-in t :clock-resume t :immediate-finish t)
+			   "* TODO Respond to %:from on %:subject\n:PROPERTIES:\n:ORDERED: t\n:LOGGING: TODO(!) NEXT(!) REVIEW(!) STARTED(!) WAITING(!) DELEGATED(!) HOLD(!) DONE(!) DEFERRED(!) CANCELLED(!) PHONE(!) PROJECT(!) FINISHED(!)\n:DESCRIPTION: -\nASSIGNED: ritho\n:DIFICULTY: Easy\n:CREATION_DATE: %U\n:NOTES: -\n:END:\n%a\n" :clock-in t :clock-resume t :immediate-finish t)
 			  ("n" "note" entry (file "~/org/notes.org")
 			   "* %? :NOTE:\n%U\n%a\n" :clock-in t :clock-resume t)
 			  ("j" "Journal" entry (file+datetree "~/org/agenda/diary.org")
@@ -351,7 +353,7 @@
 			  ("p" "Phone call" entry (file "~/org/agenda/refile.org")
 			   "* PHONE %? :PHONE:\n%U" :clock-in t :clock-resume t)
 			  ("h" "Habit" entry (file "~/org/agenda/habits.org")
-			   "* NEXT %?\n%U\n%a\nSCHEDULED: %t .+1d\n:PROPERTIES:\n:ORDERED: t\n:LOGGING: TODO(!) NEXT(!) STARTED(!) WAITING(!) DELEGATED(!) HOLD(!) DONE(!) DEFERRED(!) CANCELLED(!) PHONE(!) PROJECT(!) FINISHED(!)\n:DESCRIPTION: -\n:ASSIGNED: ritho\n:CREATION_DATE: %U\n:NOTES: -\n:STYLE: habits\n:REPEAT_TO_STATE: NEXT\n:END:\n"))))
+			   "* NEXT %?\n%U\n%a\nSCHEDULED: %t .+1d\n:PROPERTIES:\n:ORDERED: t\n:LOGGING: TODO(!) NEXT(!) REVIEW(!) STARTED(!) WAITING(!) DELEGATED(!) HOLD(!) DONE(!) DEFERRED(!) CANCELLED(!) PHONE(!) PROJECT(!) FINISHED(!)\n:DESCRIPTION: -\n:ASSIGNED: ritho\n:CREATION_DATE: %U\n:NOTES: -\n:STYLE: habits\n:REPEAT_TO_STATE: NEXT\n:END:\n"))))
 
 ;; Calendar
 ;; (european-calendar)
@@ -693,28 +695,29 @@
 		(:name "Delegated" :todo "DELEGATED" :order 8)
 		(:name "Posponed" :todo "DEFERRED" :order 9)
 
-		(:name "Next very important" :and (:todo "NEXT" :priority "A" :not (:tag "read" :tag "view")) :order 10)
-		(:name "Next important" :and (:todo "NEXT" :priority "B" :not (:tag "read" :tag "view")) :order 11)
-		(:name "Next unimportant" :and (:todo "NEXT" :priority "C" :not (:tag "read" :tag "view")) :order 12)
-		(:name "Next without priority" :and (:todo "NEXT" :not (:priority "A" :priority "B" :priority "C" :tag "read" :tag "view")) :order 13)
+		(:name "Review" :and (:todo "REVIEW" :not (:tag "read" :tag "view")) :order 10)
+		(:name "Next very important" :and (:todo "NEXT" :priority "A" :not (:tag "read" :tag "view")) :order 11)
+		(:name "Next important" :and (:todo "NEXT" :priority "B" :not (:tag "read" :tag "view")) :order 12)
+		(:name "Next unimportant" :and (:todo "NEXT" :priority "C" :not (:tag "read" :tag "view")) :order 13)
+		(:name "Next without priority" :and (:todo "NEXT" :not (:priority "A" :priority "B" :priority "C" :tag "read" :tag "view")) :order 14)
 
-		(:name "Backlog very important" :and (:todo "TODO" :priority "A" :not (:tag "read" :tag "view")) :order 14)
-		(:name "Backlog important" :and (:todo "TODO" :priority "B" :not (:tag "read" :tag "view")) :order 15)
-		(:name "Backlog unimportant" :and (:todo "TODO" :priority "C" :not (:tag "read" :tag "view")) :order 16)
-		(:name "Backlog without priority" :and (:todo "TODO" :not (:priority "A" :priority "B" :priority "C" :tag "read" :tag "view")) :order 17)
+		(:name "Backlog very important" :and (:todo "TODO" :priority "A" :not (:tag "read" :tag "view")) :order 15)
+		(:name "Backlog important" :and (:todo "TODO" :priority "B" :not (:tag "read" :tag "view")) :order 16)
+		(:name "Backlog unimportant" :and (:todo "TODO" :priority "C" :not (:tag "read" :tag "view")) :order 17)
+		(:name "Backlog without priority" :and (:todo "TODO" :not (:priority "A" :priority "B" :priority "C" :tag "read" :tag "view")) :order 18)
 
-		(:name "To read very important" :and (:tag "read" :priority "A") :order 18)
-		(:name "To read important" :and (:tag "read" :priority "B") :order 19)
-		(:name "To read unimportant" :and (:tag "read" :priority "C") :order 20)
-		(:name "To read without priority" :and (:tag "read" :not (:priority "A" :priority "B" :priority "C")) :order 21)
+		(:name "To read very important" :and (:tag "read" :priority "A") :order 19)
+		(:name "To read important" :and (:tag "read" :priority "B") :order 20)
+		(:name "To read unimportant" :and (:tag "read" :priority "C") :order 21)
+		(:name "To read without priority" :and (:tag "read" :not (:priority "A" :priority "B" :priority "C")) :order 22)
 
-		(:name "To view very important" :and (:tag "view" :priority "A") :order 22)
-		(:name "To view important" :and (:tag "view" :priority "B") :order 23)
-		(:name "To view unimportant" :and (:tag "view" :priority "C") :order 24)
-		(:name "To view without priority" :and (:tag "view" :not (:priority "A" :priority "B" :priority "C")) :order 25)
+		(:name "To view very important" :and (:tag "view" :priority "A") :order 23)
+		(:name "To view important" :and (:tag "view" :priority "B") :order 24)
+		(:name "To view unimportant" :and (:tag "view" :priority "C") :order 25)
+		(:name "To view without priority" :and (:tag "view" :not (:priority "A" :priority "B" :priority "C")) :order 26)
 
-		(:name "Cancelled" :todo "CANCELLED" :order 26)
-		(:name "Projects" :todo "PROJECT" :order 27)
+		(:name "Cancelled" :todo "CANCELLED" :order 27)
+		(:name "Projects" :todo "PROJECT" :order 28)
 		)
 	  )
 
