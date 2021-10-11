@@ -83,7 +83,7 @@
   (setq lsp-prefer-capf 't)
   (setq lsp-idle-delay 0.500)
   (setq lsp-print-performance 't)
-  (setq gofmt-command "gofumports")
+  (setq gofmt-command "gofumpt")
 
   (lsp-register-custom-settings
    '(("gopls.completeUnimported" t t)
