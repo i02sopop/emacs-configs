@@ -231,6 +231,49 @@
 
   (add-to-list 'mu4e-view-actions '("View in browser" . mu4e-msgv-action-view-in-browser) t)
   (add-to-list 'mu4e-view-actions '("Apply mbox" . mu4e-action-git-apply-mbox) t)
+
+  (defun sh-patchset-update (status)
+	(save-excursion
+      (goto-char (point-min))
+	  (kill-matching-lines "^X-Sourcehut-Patchset-Update: .*$")
+	  (let ((end-header
+			 (re-search-forward "^--text follows this line--[[:space:]]*$" nil t)))
+		(when end-header
+		  (previous-logical-line)
+		  (insert "X-Sourcehut-Patchset-Update: " status "\n")
+		  ))
+	  ))
+
+  (defun sh-patchset-needs-revision ()
+	"Sourcehut patchset needs revision"
+	(interactive)
+	(sh-patchset-update "NEEDS_REVISION"))
+
+  (defun sh-patchset-superseded ()
+	"Sourcehut patchset superseded"
+	(interactive)
+	(sh-patchset-update "SUPERSEDED"))
+
+  (defun sh-patchset-approved ()
+	"Sourcehut patchset approved"
+	(interactive)
+	(sh-patchset-update "APPROVED"))
+
+  (defun sh-patchset-rejected ()
+	"Sourcehut patchset rejected"
+	(interactive)
+	(sh-patchset-update "REJECTED"))
+
+  (defun sh-patchset-applied ()
+	"Sourcehut patchset applied"
+	(interactive)
+	(sh-patchset-update "APPLIED"))
+
+  (define-key mu4e-compose-mode-map (kbd "C-c p a") #'sh-patchset-approved)
+  (define-key mu4e-compose-mode-map (kbd "C-c p r") #'sh-patchset-rejected)
+  (define-key mu4e-compose-mode-map (kbd "C-c p s") #'sh-patchset-superseded)
+  (define-key mu4e-compose-mode-map (kbd "C-c p n") #'sh-patchset-needs-revision)
+  (define-key mu4e-compose-mode-map (kbd "C-c p m") #'sh-patchset-applied)
 ) ;; end of use-package
 
 (use-package mu4e-maildirs-extension
@@ -560,7 +603,7 @@
 
   (mu4e-maildirs-extension))
 
-(require 'mu4e-org)
-(org-link-set-parameters "mu4e"
-                         :follow #'mu4e-org-open
-                         :store  #'mu4e-org-store-link)
+;; (require 'mu4e-org)
+;; (org-link-set-parameters "mu4e"
+;;                          :follow #'mu4e-org-open
+;;                          :store  #'mu4e-org-store-link)
