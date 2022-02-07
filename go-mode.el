@@ -4,8 +4,8 @@
   :ensure t)
 (use-package go-autocomplete
   :ensure t)
-(use-package go-capf
-  :ensure t)
+;; (use-package go-capf
+;;   :ensure t)
 (use-package go-complete
   :ensure t)
 (use-package go-direx
