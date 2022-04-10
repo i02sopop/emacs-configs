@@ -10,6 +10,7 @@
 		 ("\C-c\C-s" . mu4e-headers-change-sorting)
 		 ([f1] . mu4e-in-new-frame))
   :config
+
   ;;need this for hash access
   (require 'subr-x)
   (require 'mu4e-actions)

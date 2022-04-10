@@ -46,6 +46,8 @@
   :ensure t)
 (use-package go-rename
   :ensure t)
+(use-package go-expr-completion
+  :ensure t)
 
 (use-package lsp-mode
   :ensure t
