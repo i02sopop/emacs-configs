@@ -19,6 +19,9 @@
 (use-package elixir-yasnippets
   :ensure t)
 
+(use-package mix
+  :ensure t)
+
 (use-package flycheck-credo
   :ensure t)
 
