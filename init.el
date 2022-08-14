@@ -24,6 +24,7 @@
 ;; (load "~/.emacs.d/android.el")
 (load "~/.emacs.d/php.el")
 (load "~/.emacs.d/magit.el")
+(load "~/.emacs.d/gitlab.el")
 
 (load "~/.emacs.d/functions.el")
 
