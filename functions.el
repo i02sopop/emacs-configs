@@ -4,7 +4,8 @@
   "Open URL in a new tab in Firefox."
   (interactive (browse-url-interactive-arg "URL: "))
   (let ((cmd (shell-command-to-string
-			  (concat "~/firefox/firefox --new-tab \"" (url-encode-url url) "\""))))))
+			  (concat "librewolf --new-tab \"" (url-encode-url url) "\""))))))
+;;			  (concat "~/firefox/firefox --new-tab \"" (url-encode-url url) "\""))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Time functions.
