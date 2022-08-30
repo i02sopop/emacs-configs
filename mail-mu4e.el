@@ -4,7 +4,7 @@
   (dash-enable-font-lock))
 
 (use-package mu4e
-  :load-path "/usr/share/emacs/site-lisp/mu4e"
+  :load-path "/usr/local/share/emacs/site-lisp/mu4e"
   :commands mu4e
   :bind (("\C-c\C-u" . mu4e-update-index)
 		 ("\C-c\C-s" . mu4e-headers-change-sorting)

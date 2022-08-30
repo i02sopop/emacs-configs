@@ -1,14 +1,8 @@
-(use-package go
-  :ensure t)
 (use-package go-add-tags
   :ensure t)
 (use-package go-autocomplete
   :ensure t)
-;; (use-package go-capf
-;;   :ensure t)
 (use-package go-complete
-  :ensure t)
-(use-package go-direx
   :ensure t)
 (use-package go-eldoc
   :ensure t)
@@ -55,24 +49,8 @@
   :hook (go-mode . lsp-deferred)
   :config
   (add-hook 'before-save-hook 'gofmt-before-save)
-  (define-key go-mode-map (kbd "C-c C-c") 'go-run-buffer)
-  (define-key go-mode-map (kbd "C-c C-f") 'gofmt)
-  (define-key go-mode-map (kbd "C-c C-d") 'godoc)
-  (define-key go-mode-map (kbd "C-c C-a") 'go-import-add)
   (define-key go-mode-map (kbd "C-c C-j") 'lsp-find-definition)
-  (define-key go-mode-map (kbd "C-u C-c C-j") 'godef-jump-other-window)
-  (define-key go-mode-map (kbd "C-k") 'go-kill)
-  (define-key go-mode-map (kbd "M-o") 'go-backward-delete)
-  (define-key go-mode-map (kbd "C-c C-r") 'go-remove-unused-imports)
-  (define-key go-mode-map (kbd "C-c i") 'go-goto-imports)
-  (define-key go-mode-map (kbd "C-c t") 'go-add-tags)
-  (define-key go-mode-map (kbd "C-x x") 'go-run)
-
   (define-key go-mode-map (kbd "C-c C-b") 'pop-tag-mark)       ; Return from whence you came
-  (define-key go-mode-map (kbd "M-p") 'compile)            ; Invoke compiler
-  (define-key go-mode-map (kbd "M-P") 'recompile)          ; Redo most recent compile cmd
-  (define-key go-mode-map (kbd "M-]") 'next-error)         ; Go to next error (or msg)
-  (define-key go-mode-map (kbd "M-[") 'previous-error)     ; Go to previous error or msg
 
   (setq lsp-gopls-codelens nil)
   (setq lsp-enable-indentation 't)
@@ -121,7 +99,6 @@
   ;; Optionally enable completion-as-you-type behavior.
   (setq company-idle-delay 0)
   (setq company-minimum-prefix-length 1))
-
 
 (use-package yasnippet
   :ensure t
