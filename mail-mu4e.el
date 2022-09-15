@@ -130,6 +130,8 @@
 					  (setq  user-mail-address "i02sopop@ritho.es"))
 					 ((cpb-mu4e-is-message-to msg (list "pablo.alvarez@lana.xyz"))
 					  (setq  user-mail-address "pablo.alvarez@lana.xyz"))
+					 ((cpb-mu4e-is-message-to msg (list "palvarezdesotomayor@paradigmadigital.com"))
+					  (setq  user-mail-address "palvarezdesotomayor@paradigmadigital.com"))
 					 ((cpb-mu4e-is-message-to msg "i02sopop@gmail.com")
 					  (setq  user-mail-address "i02sopop@gmail.com"))
 					 ((cpb-mu4e-is-message-to msg "palvarez@vintagram.es")
@@ -193,7 +195,8 @@
 		  "palvarez@ritho.es"
 		  "ritho@ritho.es"
 		  "i02sopop@ritho.es"
-		  "pablo.alvarez@lana.xyz"))
+		  "pablo.alvarez@lana.xyz"
+		  "palvarezdesotomayor@paradigmadigital.com"))
 
   (setq user-mail-address "palvarez@ritho.net"
 		user-full-name  "Pablo Alvarez de Sotomayor Posadillo")
@@ -207,6 +210,7 @@
 								 (:maildir "/entrada" :key ?i)
 								 (:maildir "/lana" :key ?l)
 								 (:maildir "/lana/gitlab" :key ?g)
+								 (:maildir "/paradigma" :key ?p)
 								 (:maildir "/sent-mail" :key ?s)))
 
   ;; (setq debug-on-error t)
@@ -427,6 +431,7 @@
 								   "/Oreilly"
 								   "/outbox"
 								   "/pabellon"
+								   "/paradigma"
 								   "/patents"
 								   "/pdf-devel"
 								   "/phabricator-dev"
