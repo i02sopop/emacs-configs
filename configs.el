@@ -18,7 +18,7 @@
 	  (package-install 'use-package)))
 (eval-and-compile
   (defvar use-package-verbose t)
-(require 'use-package))
+  (require 'use-package))
 
 (setq inhibit-startup-message t)
 (setq inhibit-startup-screen +1)
@@ -54,6 +54,8 @@
 
 (setq browse-url-browser-function 'browse-url-of-buffer-with-firefox)
 (setq require-final-newline 't)
+(setq global-auto-revert-mode 't)
+(setq split-width-threshold 120)
 (setq make-backup-files nil)
 (setq locale-coding-system 'utf-8)
 (setq default-mime-charset 'utf-8)
@@ -100,7 +102,29 @@
 (add-to-list 'default-frame-alist '(font . "hack"))
 (set-face-attribute 'default t :font "hack")
 
-(global-auto-revert-mode 1)
+(set-default 'truncate-lines t)
+(global-set-key (kbd "\C-ct") 'toggle-truncate-lines)
+
+(load "~/.emacs.d/functions.el")
+
+(global-set-key "\C-c\C-d" 'insert-current-date-time)
+(global-set-key "\C-c\C-t" 'insert-current-time)
+(global-set-key "\C-c\C-n" 'insert-current-time-number)
+
+(global-set-key (kbd "\C-cbs") 'bookmark-set-saved)
+(global-set-key (kbd "\C-cbj") 'bookmark-jump-saved)
+(global-set-key (kbd "\C-cbd") 'bookmark-delete-saved)
+
+;; Special function key bindings.
+(global-set-key (kbd "<f9> b") 'bbdb)
+(global-set-key (kbd "<f9> c") 'calendar)
+(global-set-key (kbd "<f9> T") 'tabify)
+(global-set-key (kbd "<f9> U") 'untabify)
+(global-set-key (kbd "<f9> v") 'visible-mode)
+(global-set-key (kbd "C-<f9>") 'previous-buffer)
+(global-set-key (kbd "C-<f10>") 'next-buffer)
+(global-set-key (kbd "M-p") 'previous-buffer)
+(global-set-key (kbd "M-n") 'next-buffer)
 
 (require 'server)
 (setq server-name

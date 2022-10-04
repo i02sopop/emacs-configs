@@ -8,7 +8,7 @@
  '(ediff-diff-options "-w")
  '(ediff-split-window-function 'split-window-horizontally)
  '(ediff-window-setup-function 'ediff-setup-windows-plain)
- '(org-trello-current-prefix-keybinding "C-c o" nil (org-trello))
+ '(org-trello-current-prefix-keybinding "C-c o")
  '(package-selected-packages '(use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

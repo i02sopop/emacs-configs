@@ -15,18 +15,12 @@
 (load "~/.emacs.d/go-mode.el")
 (load "~/.emacs.d/perl-mode.el")
 (load "~/.emacs.d/latex.el")
-;; (load "~/.emacs.d/salt.el")
-;; (load "~/.emacs.d/java.el")
-;; (load "~/.emacs.d/scala.el")
 (load "~/.emacs.d/markdown.el")
 (load "~/.emacs.d/word-count.el")
 (load "~/.emacs.d/pocket.el")
-;; (load "~/.emacs.d/android.el")
 (load "~/.emacs.d/php.el")
 (load "~/.emacs.d/magit.el")
 (load "~/.emacs.d/gitlab.el")
-
-(load "~/.emacs.d/functions.el")
 
 (load "~/.emacs.d/secrets.el")
 (load-theme 'ritho)
