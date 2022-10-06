@@ -224,6 +224,10 @@ Switch projects and subprojects from NEXT back to TODO"
 		  (org-with-point-at pom
 			(org-agenda-set-restriction-lock restriction-type))))))))
 
+(defun rt/is-note-p (&optional pom)
+  "Any note entry"
+  (string= "note" (org-entry-get (or pom (point)) "STYLE")))
+
 (defun rt/is-project-p ()
   "Any task with a todo keyword subtask"
   (save-restriction
@@ -345,6 +349,17 @@ Callers of this function already widen the buffer view."
 	   ((org-is-habit-p)
 		next-headline)
 	   ((rt/is-project-p)
+		next-headline)
+	   (t
+		nil)))))
+
+(defun rt/get-notes ()
+  "Get the entries that are notes"
+  (save-restriction
+	(widen)
+	(let ((next-headline (save-excursion (or (outline-next-heading) (point-max)))))
+	  (cond
+	   ((not org-is-note-p)
 		next-headline)
 	   (t
 		nil)))))

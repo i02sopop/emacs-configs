@@ -49,7 +49,7 @@
   (setq remember-annotation-functions (quote (org-remember-annotation)))
   (setq remember-handler-functions (quote (org-remember-handler)))
   (setq org-directory "~/org/agenda")
-  (setq org-default-notes-file "~/org/notes.org")
+  (setq org-default-notes-file "~/org/agenda/notes.org")
   (setq org-use-fast-todo-selection t)
   (setq org-treat-S-cursor-todo-selection-as-state-change nil)
   (setq org-deadline-warning-days 30)
@@ -111,8 +111,8 @@
 				 "* TODO %?\n:PROPERTIES:\n:ORDERED: t\n:LOGGING: TODO(!) NEXT(!) STARTED(!) REVIEW(!) WAITING(!) DELEGATED(!) HOLD(!) DONE(!) DEFERRED(!) CANCELLED(!) PHONE(!) PROJECT(!) FINISHED(!)\n:DESCRIPTION: -\n:ASSIGNED: ritho\n:DIFICULTY: -\n:CREATION_DATE: %U\n:NOTES: -\n:END:\n%a\n" :clock-in t :clock-resume t)
 				("r" "respond" entry (file "~/org/agenda/refile.org")
 				 "* TODO Respond to %:from on %:subject\n:PROPERTIES:\n:ORDERED: t\n:LOGGING: TODO(!) NEXT(!) REVIEW(!) STARTED(!) WAITING(!) DELEGATED(!) HOLD(!) DONE(!) DEFERRED(!) CANCELLED(!) PHONE(!) PROJECT(!) FINISHED(!)\n:DESCRIPTION: -\nASSIGNED: ritho\n:DIFICULTY: Easy\n:CREATION_DATE: %U\n:NOTES: -\n:END:\n%a\n" :clock-in t :clock-resume t :immediate-finish t)
-				("n" "note" entry (file "~/org/notes.org")
-				 "* %? :NOTE:\n%U\n%a\n" :clock-in t :clock-resume t)
+				("n" "note" entry (file "~/org/agenda/notes.org")
+				 "* %? :NOTE:\n:PROPERTIES:\n:CREATION_DATE: %U\n:STYLE: note\n:END:\n%a\n" :clock-in t :clock-resume t)
 				("j" "Journal" entry (file+datetree "~/org/agenda/diary.org")
 				 "* %?\n%U\n" :clock-in t :clock-resume t)
 				("w" "org-protocol" entry (file "~/org/agenda/refile.org")
@@ -437,7 +437,7 @@
   (setq org-agenda-custom-commands
 		(quote (("N" "Notes" tags "NOTE"
 				 ((org-agenda-overriding-header "Notes")
-				  (org-tags-match-list-sublevels t)))
+				  (org-tags-match-list-sublevels nil)))
 				("h" "Habits" tags-todo "STYLE=\"habit\""
 				 ((org-agenda-overriding-header "Habits")
 				  (org-agenda-sorting-strategy
