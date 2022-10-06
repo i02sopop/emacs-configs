@@ -43,13 +43,20 @@
 (use-package go-expr-completion
   :ensure t)
 
+;; provides fancier overlays.
+(use-package lsp-ui
+  :ensure t
+  :commands lsp-ui-mode)
+
 (use-package lsp-mode
   :ensure t
   :commands (lsp lsp-deferred)
   :hook (go-mode . lsp-deferred)
   :config
   (add-hook 'before-save-hook 'gofmt-before-save)
+
   (define-key go-mode-map (kbd "C-c C-j") 'lsp-find-definition)
+  (define-key go-mode-map (kbd "C-c C-r") 'lsp-find-references)
   (define-key go-mode-map (kbd "C-c C-b") 'pop-tag-mark)       ; Return from whence you came
 
   (setq lsp-gopls-codelens nil)
@@ -67,30 +74,26 @@
 
   (lsp-register-custom-settings
    '(("gopls.completeUnimported" t t)
-	 ("gopls.staticcheck" t t)))
+	 ("gopls.staticcheck" t t)
+	 ("gopls.gofumpt" t t)))
+
+  ;; Set up before-save hooks to format buffer and add/delete imports.
+  ;; Make sure you don't have other gofmt/goimports hooks enabled.
+  (defun lsp-go-install-save-hooks ()
+	(add-hook 'before-save-hook #'lsp-format-buffer t t)
+	(add-hook 'before-save-hook #'lsp-organize-imports t t))
+
+  (add-hook 'go-mode-hook
+			(defun go-init-config ()
+			  "Set the init configuration for go"
+			  (linum-mode 1)
+			  (auto-complete-mode -1)
+			  (lsp-go-install-save-hooks)))
   )
 
 (use-package which-key
     :config
     (which-key-mode))
-
-;; Set up before-save hooks to format buffer and add/delete imports.
-;; Make sure you don't have other gofmt/goimports hooks enabled.
-(defun lsp-go-install-save-hooks ()
-  (add-hook 'before-save-hook #'lsp-format-buffer t t)
-  (add-hook 'before-save-hook #'lsp-organize-imports t t))
-
-(add-hook 'go-mode-hook
-		  (defun go-init-config ()
-			"Set the init configuration for go"
-			(linum-mode 1)
-			(auto-complete-mode -1)
-			(lsp-go-install-save-hooks)))
-
-;; provides fancier overlays.
-(use-package lsp-ui
-  :ensure t
-  :commands lsp-ui-mode)
 
 ;; Company mode is a standard completion package that works well with lsp-mode.
 (use-package company
