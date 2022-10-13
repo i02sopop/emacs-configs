@@ -107,10 +107,6 @@
 
 (load "~/.emacs.d/functions.el")
 
-(global-set-key "\C-c\C-d" 'insert-current-date-time)
-(global-set-key "\C-c\C-t" 'insert-current-time)
-(global-set-key "\C-c\C-n" 'insert-current-time-number)
-
 (global-set-key (kbd "\C-cbs") 'bookmark-set-saved)
 (global-set-key (kbd "\C-cbj") 'bookmark-jump-saved)
 (global-set-key (kbd "\C-cbd") 'bookmark-delete-saved)
