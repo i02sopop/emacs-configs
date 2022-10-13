@@ -128,8 +128,6 @@
 					  (setq  user-mail-address "ritho@ritho.es"))
 					 ((cpb-mu4e-is-message-to msg (list "i02sopop@ritho.es"))
 					  (setq  user-mail-address "i02sopop@ritho.es"))
-					 ((cpb-mu4e-is-message-to msg (list "pablo.alvarez@lana.xyz"))
-					  (setq  user-mail-address "pablo.alvarez@lana.xyz"))
 					 ((cpb-mu4e-is-message-to msg (list "palvarezdesotomayor@paradigmadigital.com"))
 					  (setq  user-mail-address "palvarezdesotomayor@paradigmadigital.com"))
 					 ((cpb-mu4e-is-message-to msg "i02sopop@gmail.com")
@@ -195,7 +193,6 @@
 		  "palvarez@ritho.es"
 		  "ritho@ritho.es"
 		  "i02sopop@ritho.es"
-		  "pablo.alvarez@lana.xyz"
 		  "palvarezdesotomayor@paradigmadigital.com"))
 
   (setq user-mail-address "palvarez@ritho.net"
