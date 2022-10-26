@@ -87,6 +87,7 @@
 	 ("gopls.staticcheck" t t)
 	 ("gopls.gofumpt" t t)))
 
+  ;; Install gci with `go install github.com/daixiang0/gci@latest`.
   (defun gci-organize-imports ()
 	"Organize the imports with gci."
 	(interactive)
