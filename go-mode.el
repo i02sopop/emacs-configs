@@ -21,7 +21,17 @@
 (use-package go-imports
   :ensure t)
 (use-package go-mode
-  :ensure t)
+  :ensure t
+  :config
+  (use-package godoctor
+	:ensure t
+	:config
+	  (define-key go-mode-map (kbd "C-x C-g r") 'godoctor-rename)
+	  (define-key go-mode-map (kbd "C-x C-g e") 'godoctor-extract)
+	  (define-key go-mode-map (kbd "C-x C-g t") 'godoctor-toggle)
+	  (define-key go-mode-map (kbd "C-x C-g d") 'godoctor-godoc)
+	)
+  )
 (use-package go-projectile
   :ensure t)
 (use-package go-rename
@@ -77,11 +87,30 @@
 	 ("gopls.staticcheck" t t)
 	 ("gopls.gofumpt" t t)))
 
+  (defun gci-organize-imports ()
+	"Organize the imports with gci."
+	(interactive)
+	(setq go-project (shell-command-to-string "go list -m"))
+	(start-process "gci"
+				   (get-buffer-create "*gci-import-buffer*")
+				   "gci"
+				   "write"
+				   "-s" "standard"
+				   "-s" "default"
+				   "-s" (concat "prefix(" go-project ")")
+				   (buffer-file-name))
+	(sit-for 0.1)
+	(revert-buffer nil 't nil)
+	)
+
   ;; Set up before-save hooks to format buffer and add/delete imports.
   ;; Make sure you don't have other gofmt/goimports hooks enabled.
   (defun lsp-go-install-save-hooks ()
-	(add-hook 'before-save-hook #'lsp-format-buffer t t)
-	(add-hook 'before-save-hook #'lsp-organize-imports t t))
+	(add-hook 'before-save-hook #'lsp-organize-imports t t)
+	(add-hook 'before-save-hook #'gci-organize-imports)
+	(add-hook 'before-save-hook #'lsp-format-buffer t t))
+
+  (define-key go-mode-map (kbd "C-x C-g g") 'gci-organize-imports)
 
   (add-hook 'go-mode-hook
 			(defun go-init-config ()
