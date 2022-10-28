@@ -23,6 +23,8 @@
 (use-package go-mode
   :ensure t
   :config
+  ;; Install godoctor with git clone https://github.com/godoctor/godoctor
+  ;; cd godoctor && go install
   (use-package godoctor
 	:ensure t
 	:config
