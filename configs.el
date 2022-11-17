@@ -28,7 +28,6 @@
 (column-number-mode 't)
 (display-time)
 (auto-compression-mode)
-(scroll-bar-mode -1)
 
 (prefer-coding-system 'utf-8)
 (set-terminal-coding-system 'utf-8)
@@ -53,7 +52,6 @@
 (global-set-key [M-down] 'move-text-down)
 
 (setq browse-url-browser-function 'browse-url-of-buffer-with-firefox)
-(setq require-final-newline 't)
 (setq global-auto-revert-mode 't)
 (setq split-width-threshold 120)
 (setq make-backup-files nil)
@@ -62,9 +60,9 @@
 (setq-default indent-tabs-mode t)
 (setq-default tab-width 4)
 (setq-default c-basic-offset 4)
+(setq-default js-indent-level 2)
+(setq-default css-indent-offset 2)
 (setq indent-tabs-mode t)
-(setq tab-width 4)
-(setq c-basic-offset 4)
 (setq indent-line-function 'insert-tab)
 (setq Info-aditional-directory-list '"/usr/local/share/info"
 	  auto-image-file-mode 't
@@ -74,8 +72,30 @@
 (setq default-major-mode 'text-mode)
 (setq initial-major-mode 'text-mode)
 
-(tool-bar-mode -1)
-(menu-bar-mode -1)
+(tool-bar-mode 0)
+(menu-bar-mode 0)
+(scroll-bar-mode 0)
+
+;; Interactively do things.
+(ido-mode 1)
+(ido-everywhere)
+(setq ido-enable-flex-matching t)
+(fido-mode)
+
+;; Show stray whitespace.
+(setq-default show-trailing-whitespace t)
+(setq-default indicate-empty-lines t)
+(setq-default indicate-buffer-boundaries 'left)
+
+;; Add a newline automatically at the end of a file while saving.
+(setq-default require-final-newline t)
+
+;; Consider a period followed by a single space to be end of sentence.
+(setq sentence-end-double-space nil)
+
+;; Highlight matching pairs of parentheses.
+(setq show-paren-delay 0)
+(show-paren-mode)
 
 (setq custom-file "~/.emacs.d/custom.el")
 
