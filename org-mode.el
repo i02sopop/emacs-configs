@@ -698,6 +698,30 @@
   :config
   (add-hook 'org-mode-hook #'org-make-toc-mode))
 
+(use-package org-notebook
+  :ensure t)
+
+(use-package org-notify
+  :ensure t)
+
+(use-package org-plus-contrib
+  :ensure t)
+
+(use-package org-analyzer
+  :ensure t)
+
+(use-package org-books
+  :ensure t)
+
+(use-package org-dashboard
+  :ensure t)
+
+(use-package org-gtd
+  :ensure t)
+
+(use-package org-kanban
+  :ensure t)
+
 (use-package org-super-agenda
   :ensure t
   :config

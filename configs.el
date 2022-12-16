@@ -2,8 +2,8 @@
 (setq package-archives
 	  '(("ELPA" . "http://tromey.com/elpa/")
 	("gnu" . "http://elpa.gnu.org/packages/")
-	("melpa" . "https://melpa.org/packages/")
-	("org" . "http://orgmode.org/elpa/")))
+	("melpa" . "https://melpa.org/packages/")))
+;;	("org" . "http://orgmode.org/elpa/")))
 ;; http://marmalade-repo.org/packages/ is not working, redirects to
 ;; https://marmalade-repo.org/packages/, which doesn't work
 
