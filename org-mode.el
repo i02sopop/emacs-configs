@@ -704,23 +704,14 @@
 (use-package org-notify
   :ensure t)
 
-(use-package org-plus-contrib
-  :ensure t)
-
 (use-package org-analyzer
   :ensure t)
 
 (use-package org-books
-  :ensure t)
-
-(use-package org-dashboard
-  :ensure t)
-
-(use-package org-gtd
-  :ensure t)
-
-(use-package org-kanban
-  :ensure t)
+  :ensure t
+  :config
+  (setq org-books-file "~/org/books.org")
+  (global-set-key (kbd "\C-ci") 'org-books-add-isbn))
 
 (use-package org-super-agenda
   :ensure t

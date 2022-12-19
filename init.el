@@ -9,6 +9,7 @@
 ;; (load "~/.emacs.d/elixir.el")
 (load "~/.emacs.d/ritho-modes.el")
 (load "~/.emacs.d/org-mode.el")
+;; (load "~/.emacs.d/org-gtd.el")
 (load "~/.emacs.d/mail-mu4e.el")
 (load "~/.emacs.d/mark-multiple.el")
 (load "~/.emacs.d/less-mode.el")
