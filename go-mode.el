@@ -114,7 +114,8 @@
   ;; Make sure you don't have other gofmt/goimports hooks enabled.
   (defun lsp-go-install-save-hooks ()
 	(add-hook 'before-save-hook #'lsp-format-buffer t t)
-	(add-hook 'before-save-hook #'lsp-organize-imports t t))
+	(add-hook 'before-save-hook #'lsp-organize-imports t t)
+	(add-hook 'before-save-hook 'gofmt-before-save))
 
   (define-key go-mode-map (kbd "C-x C-g g") 'gci-organize-imports)
 
