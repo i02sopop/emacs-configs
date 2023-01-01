@@ -25,7 +25,7 @@
 
   ;; Custom Key Bindings
   (global-set-key (kbd "\C-ca") 'org-agenda)
-  (global-set-key (kbd "\C-c\C-a") 'org-archive-subtree)
+  (global-set-key (kbd "\C-x\C-a") 'org-archive-subtree)
   (global-set-key (kbd "\C-cc") 'org-capture)
   (global-set-key (kbd "\C-c\C-c") 'org-clock-in)
   (global-set-key (kbd "\C-cd") 'rt/org-mark-task-as-done)
