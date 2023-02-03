@@ -308,7 +308,6 @@
 								   "/gnu-system-discuss"
 								   "/gnutls-commit"
 								   "/gnutls-devel"
-								   "/gong-devel"
 								   "/grep-commit"
 								   "/hacklabs"
 								   "/hackmeeting"
