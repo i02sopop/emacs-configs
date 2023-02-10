@@ -1,15 +1,8 @@
 (require 'url-util)
 
-(defun browse-url-of-buffer-with-firefox (url &optional new-window)
-  "Open URL in a new tab in Firefox."
-  (interactive (browse-url-interactive-arg "URL: "))
-  (let ((cmd (shell-command-to-string
-			  (concat "librewolf --new-tab \"" (url-encode-url url) "\""))))))
-;;			  (concat "~/firefox/firefox --new-tab \"" (url-encode-url url) "\""))))))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Time functions.
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;
+;; Time functions. ;;
+;;;;;;;;;;;;;;;;;;;;;
 (defvar current-date-time-format "%a %b %d %H:%M:%S %Z %Y"
   "Format of date to insert with `insert-current-date-time' func
 See help of `format-time-string' for possible replacements")
@@ -45,9 +38,9 @@ Uses `current-date-time-format' for the formatting the date/time."
 (global-set-key "\C-c\C-t" 'insert-current-time)
 (global-set-key "\C-c\C-n" 'insert-current-time-number)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Dictionary functions
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Dictionary functions ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun fd-switch-dictionary()
   (interactive)
   (let* ((dic ispell-current-dictionary)
@@ -56,5 +49,22 @@ Uses `current-date-time-format' for the formatting the date/time."
 	(message "Dictionary switched from %s to %s" dic change)
 	))
 
-;; (global-set-key (kbd "<f8>")   'fd-switch-dictionary)
 (global-set-key "\C-x\C-d" 'fd-switch-dictionary)
+
+;;;;;;;;;;;;;;;;;;;;;;
+;; Buffer functions ;;
+;;;;;;;;;;;;;;;;;;;;;;
+
+(defun browse-url-of-buffer-with-firefox (url &optional new-window)
+  "Open URL in a new tab in Firefox."
+  (interactive (browse-url-interactive-arg "URL: "))
+  (let ((cmd (shell-command-to-string
+			  (concat "librewolf --new-tab \"" (url-encode-url url) "\""))))))
+;;			  (concat "~/firefox/firefox --new-tab \"" (url-encode-url url) "\""))))))
+
+(defun revert-buffer-no-confirm ()
+  "Revert buffer without confirmation."
+  (interactive)
+  (revert-buffer :ignore-auto :noconfirm))
+
+(global-set-key "\C-c\C-l" 'revert-buffer-no-confirm)
