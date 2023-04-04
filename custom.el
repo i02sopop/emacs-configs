@@ -10,7 +10,7 @@
  '(ediff-window-setup-function 'ediff-setup-windows-plain)
  '(org-trello-current-prefix-keybinding "C-c o")
  '(package-selected-packages
-   '(magit-delta tide typescript-mode react-snippets helm-core magit-section with-editor tree-sitter js3-mode org-analyzer org-books org-dashboard org-gtd org-kanban org-notebook org-notify org-plus-contrib godoctor use-package)))
+   '(gptel magit-delta tide typescript-mode react-snippets helm-core magit-section with-editor tree-sitter js3-mode org-analyzer org-books org-dashboard org-gtd org-kanban org-notebook org-notify org-plus-contrib godoctor use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
