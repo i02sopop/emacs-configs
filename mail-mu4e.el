@@ -214,7 +214,6 @@
 								 (:maildir "/rehuerta" :key ?r)
 								 (:maildir "/sent-mail" :key ?s)))
 
-  ;; (setq debug-on-error t)
   (setq mu4e-maildirs '("/aula-linux"
 						"/autoconf"
 						"/autoconf-commit"
