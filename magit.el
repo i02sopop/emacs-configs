@@ -4,9 +4,9 @@
   (global-set-key (kbd "C-c g") 'magit-status)
   )
 
-(use-package magit-delta
-  :ensure t
-  :hook (magit-mode . magit-delta-mode))
+;; (use-package magit-delta
+;;   :ensure t
+;;   :hook (magit-mode . magit-delta-mode))
 
 (use-package magit-org-todos
   :ensure t)
