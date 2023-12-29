@@ -487,6 +487,11 @@
 	(interactive)
 	(sh-patchset-update "APPROVED"))
 
+  (defun sh-patchset-proposed ()
+	"Sourcehut patchset proposed"
+	(interactive)
+	(sh-patchset-update "PROPOSED"))
+
   (defun sh-patchset-rejected ()
 	"Sourcehut patchset rejected"
 	(interactive)
@@ -497,6 +502,7 @@
 	(interactive)
 	(sh-patchset-update "APPLIED"))
 
+  (define-key mu4e-compose-mode-map (kbd "C-c p p") #'sh-patchset-proposed)
   (define-key mu4e-compose-mode-map (kbd "C-c p a") #'sh-patchset-approved)
   (define-key mu4e-compose-mode-map (kbd "C-c p r") #'sh-patchset-rejected)
   (define-key mu4e-compose-mode-map (kbd "C-c p s") #'sh-patchset-superseded)
