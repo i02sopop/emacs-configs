@@ -509,3 +509,5 @@
   (define-key mu4e-compose-mode-map (kbd "C-c p n") #'sh-patchset-needs-revision)
   (define-key mu4e-compose-mode-map (kbd "C-c p m") #'sh-patchset-applied)
 ) ;; end of use-package
+
+(setq mail-user-agent 'mu4e-user-agent)
