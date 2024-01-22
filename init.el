@@ -25,3 +25,4 @@
 
 (load "~/.emacs.d/secrets.el")
 (load-theme 'ritho)
+(put 'upcase-region 'disabled nil)

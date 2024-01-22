@@ -60,11 +60,14 @@
   :ensure t)
 (use-package go-expr-completion
   :ensure t)
-
-;; provides fancier overlays.
-(use-package lsp-ui
-  :ensure t
-  :commands lsp-ui-mode)
+;; (use-package flymake-go
+;;   :ensure t)
+;; (use-package flymake-go-staticcheck
+;;   :ensure t)
+;; (use-package flymake-golangci
+;;   :ensure t)
+(use-package go-scratch
+  :ensure t)
 
 (use-package lsp-mode
   :ensure t
@@ -107,8 +110,7 @@
 				   "-s" (concat "prefix(" go-project ")")
 				   (buffer-file-name))
 	(sit-for 0.1)
-	(revert-buffer nil 't nil)
-	)
+	(revert-buffer nil 't nil))
 
   ;; Set up before-save hooks to format buffer and add/delete imports.
   ;; Make sure you don't have other gofmt/goimports hooks enabled.
@@ -121,6 +123,11 @@
 
   (add-hook 'before-save-hook 'lsp-go-install-save-hooks)
   )
+
+;; provides fancier overlays.
+(use-package lsp-ui
+  :ensure t
+  :commands lsp-ui-mode)
 
 (use-package which-key
     :config
