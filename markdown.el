@@ -15,6 +15,8 @@
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown")
+  :bind (:map markdown-mode-map
+			  ("C-c C-e" . markdown-do)
+			  ("C-c C-f" . markdownfmt-format-buffer))
   :config
-  (define-key markdown-mode-map (kbd "C-c C-f") #'markdownfmt-format-buffer)
   (add-hook 'markdown-mode-hook #'markdownfmt-enable-on-save))
