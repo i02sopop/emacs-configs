@@ -72,11 +72,22 @@
 (use-package lsp-mode
   :ensure t
   :commands (lsp lsp-deferred)
-  :hook (go-mode . lsp-deferred)
+  :hook ((go-mode . lsp-deferred)
+		 (c-mode . lsp-deferred)
+		 (lsp-mode . lsp-enable-which-key-integration))
   :config
   (define-key go-mode-map (kbd "C-c C-j") 'lsp-find-definition)
   (define-key go-mode-map (kbd "C-c C-r") 'lsp-find-references)
   (define-key go-mode-map (kbd "C-c C-b") 'pop-tag-mark)       ; Return from whence you came
+
+  (define-key c-mode-map (kbd "C-c C-j") 'lsp-find-definition)
+  (define-key c-mode-map (kbd "C-c C-r") 'lsp-find-references)
+  (define-key c-mode-map (kbd "C-c C-b") 'pop-tag-mark)       ; Return from whence you came
+
+  (setq lsp-keymap-prefix "C-c l")
+  (define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
+  (setq lsp-file-watch-threshold 15000)
+  (setq lsp-completion-enable 't)
 
   (setq lsp-gopls-codelens nil)
   (setq lsp-enable-indentation 't)
@@ -127,7 +138,12 @@
 ;; provides fancier overlays.
 (use-package lsp-ui
   :ensure t
-  :commands lsp-ui-mode)
+  :commands lsp-ui-mode
+  :config
+  (setq lsp-ui-doc-enable nil)
+  (setq lsp-ui-doc-delay 0.5)
+  (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
+  (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references))
 
 (use-package which-key
     :config
@@ -139,9 +155,36 @@
   :config
   ;; Optionally enable completion-as-you-type behavior.
   (setq company-idle-delay 0)
-  (setq company-minimum-prefix-length 1))
+  (setq company-minimum-prefix-length 1)
+  (add-to-list 'company-backends 'company-c-headers))
 
 (use-package yasnippet
   :ensure t
   :commands yas-minor-mode
   :hook (go-mode . yas-minor-mode))
+
+(use-package eglot
+  :ensure t
+  :config
+  (add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
+  (add-hook 'c-mode-hook 'eglot-ensure)
+  (add-hook 'c++-mode-hook 'eglot-ensure))
+
+(use-package ccls
+  :ensure t
+  :hook ((c-mode c++-mode objc-mode cuda-mode) .
+         (lambda () (require 'ccls) (lsp)))
+  :config
+  (setq ccls-executable "/usr/local/bin/ccls")
+  (setq ccls-initialization-options
+	'(:index (:comments 2) :completion (:detailedLabel t))))
+
+(use-package srefactor
+  :ensure t
+  :config
+  (semantic-mode 1)
+  (define-key c-mode-map (kbd "M-RET") 'srefactor-refactor-at-point)
+  (define-key c++-mode-map (kbd "M-RET") 'srefactor-refactor-at-point))
+
+(add-to-list 'auto-mode-alist '("\\.h\\'" . ritho-c-mode-func))
+(add-to-list 'auto-mode-alist '("\\.c\\'" . ritho-c-mode-func))
