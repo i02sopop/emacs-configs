@@ -21,7 +21,7 @@
   "C mode con los ajustes por defecto que usa Linus para el kernel."
   (interactive)
   (c-mode)
-  (linum-mode)
+  (display-line-numbers-mode)
   (auto-complete-mode 1)
   (c-set-style "K&R")
   (setq c-indent-level 4)
@@ -38,7 +38,7 @@
   "Mis ajustes para el C mode."
   (interactive)
   (c-mode)
-  (linum-mode)
+  (display-line-numbers-mode)
   (setq show-trailing-whitespace t)
   (auto-complete-mode 1)
   (c-set-style "K&R")
@@ -58,7 +58,7 @@
   "Mis ajustes para el C++ mode."
   (interactive)
   (c++-mode)
-  (linum-mode)
+  (display-line-numbers-mode)
   (setq show-trailing-whitespace t)
   (auto-complete-mode 1)
   (c-set-style "K&R")
@@ -77,7 +77,7 @@
 (defun ritho-php-mode-func()
   "Mis ajustes para el PHP mode."
   (interactive)
-  (linum-mode)
+  (display-line-numbers-mode)
   (ac-config-default)
   (yas/global-mode 1)
   (auto-complete-mode 1)
@@ -111,7 +111,7 @@
   "Mis ajustes para el java-mode"
   (interactive)
   (java-mode)
-  (linum-mode)
+  (display-line-numbers-mode)
   (c-set-style "K&R")
   (setq c-indent-level 4)
   (setq c-basic-offset 4)
@@ -128,7 +128,7 @@
   (interactive)
   (java-mode)
   (android-mode)
-  (linum-mode)
+  (display-line-numbers-mode)
   (setq show-trailing-whitespace t)
   (auto-complete-mode 1)
   (setq indent-tabs-mode t)

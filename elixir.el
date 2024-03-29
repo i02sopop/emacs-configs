@@ -10,7 +10,7 @@
   (setq edts-erl-sname "ritho")
   (add-to-list 'elixir-mode-hook
 			   (defun enable-linum-mode ()
-				 (linum-mode 1)))
+				 (display-line-numbers-mode)))
   )
 
 (use-package elixir-mix
