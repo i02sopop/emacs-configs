@@ -614,7 +614,9 @@
   :ensure t
   :config
   (setq org-journal-dir "~/journal/")
-  (setq org-journal-enable-encryption nil))
+  (setq org-journal-enable-encryption nil)
+
+  (global-set-key (kbd "\C-cj") 'org-journal-new-entry))
 
 (use-package org-mime
   :ensure t)
