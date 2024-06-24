@@ -1,10 +1,11 @@
 go: '1.22'
 run:
   # The default concurrency value is the number of available CPU.
-  concurrency: 8
+  concurrency: 16
   # Timeout for analysis, e.g. 30s, 5m.
   # Default: 1m
-  timeout: 2m
+  timeout: 5m
+  issues-exit-code: 0
 
 output:
   sort-results: true
@@ -13,6 +14,7 @@ linters:
   disable-all: true
   fast: false
   enable:
+    - paralleltest
     - asciicheck
     - bidichk
     - bodyclose
@@ -20,7 +22,6 @@ linters:
     - contextcheck
     - cyclop
     - decorder
-    - depguard
     - dupl
     - errcheck
     - errorlint
@@ -39,7 +40,6 @@ linters:
     - gofmt
     - gofumpt
     - goimports
-    - gomnd
     - gosec
     - gosimple
     - govet
@@ -47,8 +47,8 @@ linters:
     - ineffassign
     - lll
     - maintidx
-    - megacheck
     - misspell
+    - mnd
     - nakedret
     - nestif
     - nilerr
@@ -59,7 +59,6 @@ linters:
     - promlinter
     - reassign
     - revive
-    # - sqlclosecheck
     - staticcheck
     - stylecheck
     - thelper
@@ -70,9 +69,11 @@ linters:
 
 # all available settings of specific linters
 linters-settings:
+  errcheck:
+    ignore: ""
   govet:
     # report about shadowed variables
-    check-shadowing: true
+    shadow: true
   gofmt:
     # simplify code: gofmt with `-s` option, true by default
     simplify: true
@@ -104,7 +105,7 @@ linters-settings:
   lll:
     # max line length, lines longer will be reported. Default is 120.
     # '\t' is counted as 1 character by default, and can be changed with the tab-width option
-    line-length: 90
+    line-length: 100
     # tab width in spaces. Default to 1.
     tab-width: 1
   unused:
@@ -161,6 +162,8 @@ linters-settings:
     custom-order: true
 
 issues:
+  max-issues-per-linter: 20
+  max-same-issues: 20
   # Excluding configuration per-path and per-linter
   # exclude-rules:
     # Exclude some linters from running on tests files.

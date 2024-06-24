@@ -137,6 +137,13 @@
 					 ((cpb-mu4e-is-message-to msg "i02sopop@ritho.net")
 					  (setq  user-mail-address "i02sopop@ritho.net")))))))
 
+  (add-hook 'mu4e-compose-mode-hook
+  (defun my-do-compose-stuff ()
+    "My settings for message composition."
+    (set-fill-column 80)
+    (flyspell-mode)
+	(setq indent-line-function 'indent-relative)))
+
   ;; convenience function for starting the whole mu4e in its own frame
   ;; posted by the author of mu4e on the mailing list
   (defun mu4e-in-new-frame ()
@@ -151,6 +158,10 @@
   (setq mu4e-cache-maildir-list 't)
   (setq mu4e-attachment-dir  "~/Downloads")
   (setq mu4e-headers-results-limit 3000)
+
+  ;; Modify the expression introducing a quoted email:
+  (setq message-citation-line-function 'message-insert-formatted-citation-line)
+  (setq message-citation-line-format "On %d %b %Y, at %T (%Z), %f wrote:\n")
 
   ;; the next are relative to `mu4e-maildir'
   ;; instead of strings, they can be functions too, see
@@ -168,7 +179,7 @@
 		"Pablo Álvarez de Sotomayor Posadillo
  Bachelor Degree in Computer Science
            http://ritho.net
-    http://blogs.fsfe.org/palvarez
+    http://ritho.net/blog
     \"Of all the things I've lost,
       I miss my mind the most.\"")
 

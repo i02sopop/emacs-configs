@@ -57,12 +57,10 @@
 (setq make-backup-files nil)
 (setq locale-coding-system 'utf-8)
 (setq default-mime-charset 'utf-8)
-(setq-default indent-tabs-mode t)
 (setq-default tab-width 4)
 (setq-default c-basic-offset 4)
 (setq-default js-indent-level 2)
 (setq-default css-indent-offset 2)
-(setq indent-tabs-mode t)
 (setq indent-line-function 'insert-tab)
 (setq Info-aditional-directory-list '"/usr/local/share/info"
 	  auto-image-file-mode 't

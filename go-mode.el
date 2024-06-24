@@ -60,12 +60,6 @@
   :ensure t)
 (use-package go-expr-completion
   :ensure t)
-;; (use-package flymake-go
-;;   :ensure t)
-;; (use-package flymake-go-staticcheck
-;;   :ensure t)
-;; (use-package flymake-golangci
-;;   :ensure t)
 (use-package go-scratch
   :ensure t)
 
