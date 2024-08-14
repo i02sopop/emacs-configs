@@ -48,20 +48,37 @@
   :ensure t)
 (use-package go-stacktracer
   :ensure t)
-(use-package go-tag
-  :ensure t)
 (use-package go-impl
-  :ensure t)
-(use-package golint
-  :ensure t)
-(use-package gotest
   :ensure t)
 (use-package go-rename
   :ensure t)
 (use-package go-expr-completion
   :ensure t)
-(use-package go-scratch
-  :ensure t)
+
+(use-package gotest
+  :ensure t
+  :config
+  (define-key go-mode-map (kbd "C-c C-g C-r C-t") 'go-test-current-test)
+  (define-key go-mode-map (kbd "C-c C-g C-r C-c") 'go-test-current-coverage)
+  (define-key go-mode-map (kbd "C-c C-g C-r C-f") 'go-test-current-file)
+  (define-key go-mode-map (kbd "C-c C-g C-r C-b") 'go-test-current-file-benchmarks)
+  (define-key go-mode-map (kbd "C-c C-g C-r C-p") 'go-test-current-project)
+  (define-key go-mode-map (kbd "C-c C-g C-r C-B") 'go-test-current-project-benchmarks)
+  )
+
+(use-package go-tag
+  :ensure t
+  :config
+  (define-key go-mode-map (kbd "C-c C-g C-t C-a") 'go-tag-add)
+  (define-key go-mode-map (kbd "C-c C-g C-t C-d") 'go-tag-remove)
+  (define-key go-mode-map (kbd "C-c C-g C-t C-r") 'go-tag-refresh)
+  )
+
+(use-package golint
+  :ensure t
+  :config
+  (define-key go-mode-map (kbd "C-c C-g C-l") 'golint)
+  )
 
 (use-package lsp-mode
   :ensure t
