@@ -44,8 +44,6 @@
   :ensure t)
 (use-package go-rename
   :ensure t)
-(use-package go-snippets
-  :ensure t)
 (use-package go-stacktracer
   :ensure t)
 (use-package go-impl
@@ -115,6 +113,7 @@
 
   (lsp-register-custom-settings
    '(("gopls.completeUnimported" t t)
+	 ("gopls.completionDocumentation" t t)
 	 ("gopls.staticcheck" t t)
 	 ("gopls.gofumpt" t t)))
 
@@ -142,9 +141,7 @@
 	(add-hook 'before-save-hook 'gofmt-before-save))
 
   (define-key go-mode-map (kbd "C-x C-g g") 'gci-organize-imports)
-
-  (add-hook 'before-save-hook 'lsp-go-install-save-hooks)
-  )
+  (add-hook 'before-save-hook 'lsp-go-install-save-hooks))
 
 ;; provides fancier overlays.
 (use-package lsp-ui

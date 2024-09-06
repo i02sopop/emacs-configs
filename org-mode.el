@@ -772,3 +772,18 @@
 									(org-super-agenda-groups org-super-agenda-groups))))
 						 nil)))))
   )
+
+(use-package org-roam
+  :ensure t)
+
+(use-package org-roam-ql
+  :ensure t)
+
+(use-package org-roam-ql-ql
+  :ensure t)
+
+(use-package org-roam-timestamps
+  :ensure t)
+
+(use-package org-roam-ui
+  :ensure t)
