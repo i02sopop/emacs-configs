@@ -37,7 +37,8 @@
 			(defun go-init-config ()
 			  "Set the init configuration for go"
 			  (display-line-numbers-mode)
-			  (auto-complete-mode -1)))
+			  (auto-complete-mode -1)
+			  (hs-minor-mode 1)))
   )
 
 (use-package go-projectile

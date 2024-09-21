@@ -23,6 +23,7 @@
   (c-mode)
   (display-line-numbers-mode)
   (auto-complete-mode 1)
+  (hs-minor-mode 1)
   (c-set-style "K&R")
   (setq c-indent-level 4)
   (setq c-basic-offset 4)
@@ -41,6 +42,7 @@
   (display-line-numbers-mode)
   (setq show-trailing-whitespace t)
   (auto-complete-mode 1)
+  (hs-minor-mode 1)
   (c-set-style "K&R")
   (setq c-indent-level 4)
   (setq c-basic-offset 4)
@@ -165,3 +167,9 @@
           (while (re-search-forward "[[:space:]\n]+" nil t)
             (replace-match ""))))
     (print "This function operates on a region")))
+
+(eval-after-load 'hideshow
+  '(progn
+	 (global-set-key (kbd "<C-tab>") 'hs-toggle-hiding)
+	 (global-set-key (kbd "\C-c+") 'hs-show-block)
+	 (global-set-key (kbd "\C-c-") 'hs-hide-block)))
