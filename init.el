@@ -23,6 +23,7 @@
 (load "~/.emacs.d/magit.el")
 (load "~/.emacs.d/gitlab.el")
 (load "~/.emacs.d/howm.el")
+(load "~/.emacs.d/asciidoc.el")
 
 (load "~/.emacs.d/secrets.el")
 (load-theme 'ritho)
