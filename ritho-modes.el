@@ -25,6 +25,7 @@
   (auto-complete-mode 1)
   (hs-minor-mode 1)
   (c-set-style "K&R")
+  (hs-hide-all)
   (setq c-indent-level 4)
   (setq c-basic-offset 4)
   (setq c-brace-imaginary-offset 0)
@@ -44,6 +45,7 @@
   (auto-complete-mode 1)
   (hs-minor-mode 1)
   (c-set-style "K&R")
+  (hs-hide-all)
   (setq c-indent-level 4)
   (setq c-basic-offset 4)
   (setq c-brace-imaginary-offset 0)
@@ -126,7 +128,7 @@
   (setq tab-width 4))
 
 (defun ritho-android-mode()
-  "Mis ajustes para el android-mode"
+  "Settings for the android-mode"
   (interactive)
   (java-mode)
   (android-mode)
@@ -167,6 +169,12 @@
           (while (re-search-forward "[[:space:]\n]+" nil t)
             (replace-match ""))))
     (print "This function operates on a region")))
+
+(defun ritho-lsp-find-definition()
+  "Find the definition"
+  (interactive)
+  (lsp-find-definition)
+  (hs-show-block))
 
 (eval-after-load 'hideshow
   '(progn

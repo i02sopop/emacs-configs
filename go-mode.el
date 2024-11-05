@@ -38,7 +38,8 @@
 			  "Set the init configuration for go"
 			  (display-line-numbers-mode)
 			  (auto-complete-mode -1)
-			  (hs-minor-mode 1)))
+			  (hs-minor-mode 1)
+			  (hs-hide-all)))
   )
 
 (use-package go-projectile
@@ -86,7 +87,7 @@
 		 (c-mode . lsp-deferred)
 		 (lsp-mode . lsp-enable-which-key-integration))
   :config
-  (define-key go-mode-map (kbd "C-c C-j") 'lsp-find-definition)
+  (define-key go-mode-map (kbd "C-c C-j") 'ritho-lsp-find-definition)
   (define-key go-mode-map (kbd "C-c C-r") 'lsp-find-references)
   (define-key go-mode-map (kbd "C-c C-b") 'pop-tag-mark)       ; Return from whence you came
 
