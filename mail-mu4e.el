@@ -218,6 +218,7 @@
   (setq mu4e-maildir-shortcuts '((:maildir "/archive" :key ?a)
 								 (:maildir "/rss/slashdot" :key ?d)
 								 (:maildir "/rss/hacker-news" :key ?h)
+								 (:maildir "/rss/arstechnica" :key ?A)
 								 (:maildir "/entrada" :key ?i)
 								 (:maildir "/rss/lwn" :key ?l)
 								 (:maildir "/rss/meneame" :key ?m)
@@ -378,6 +379,7 @@
 						"/rss/adam_nuttall"
 						"/rss/aldea"
 						"/rss/antirez"
+						"/rss/arstechnica"
 						"/rss/barrapunto"
 						"/rss/bulmages"
 						"/rss/clean_coder"
