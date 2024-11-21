@@ -61,6 +61,7 @@
   (setq org-log-into-drawer "LOGBOOK")
   (setq org-done-keywords (list "DONE" "FINISHED"))
   (setq org-habit-show-all-today nil)
+  (setq org-hide-emphasis-markers t)
 
   ;; Agenda settings
   (setq org-agenda-include-diary t)
@@ -585,6 +586,12 @@
 
   (define-abbrev org-mode-abbrev-table "sblk" "" 'skel-org-block)
 
+  (font-lock-add-keywords 'org-mode
+                          '(("^ *\\([-]\\) "
+                             (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+
+  (add-hook 'org-mode-hook 'visual-line-mode)
+
   ;;;;;;;;;;;;;;;;;;;;;;;;
   ;; end of org config. ;;
   ;;;;;;;;;;;;;;;;;;;;;;;;
@@ -774,7 +781,14 @@
   )
 
 (use-package org-roam
-  :ensure t)
+  :ensure t
+  :config
+  (setq org-roam-directory "~/org-roam/")
+  (setq org-roam-dailies-directory "journal/")
+  (setq org-roam-dailies-capture-templates
+		'(("d" "default" entry "* %<%I:%M %p>: %?"
+		   :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))))
+  )
 
 (use-package org-roam-ql
   :ensure t)
