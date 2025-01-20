@@ -279,7 +279,6 @@
 						"/discussion-fsfe"
 						"/docuforum"
 						"/drafts"
-						"/emacs-commits"
 						"/emacs-devel"
 						"/emacs-orgmode"
 						"/epla"
