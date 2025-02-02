@@ -1,11 +1,12 @@
-go: '1.22'
+go: '1.23'
 run:
   # The default concurrency value is the number of available CPU.
-  concurrency: 16
+  # concurrency: 16
   # Timeout for analysis, e.g. 30s, 5m.
   # Default: 1m
-  timeout: 5m
-  issues-exit-code: 0
+  timeout: 10m
+  modules-download-mode: readonly
+  issues-exit-code: 1
 
 output:
   sort-results: true
@@ -21,12 +22,11 @@ linters:
     - containedctx
     - contextcheck
     - cyclop
-    - decorder
     - dupl
     - errcheck
     - errorlint
     - exhaustive
-    - exportloopref
+    - copyloopvar
     - funlen
     - gci
     - gochecknoglobals
@@ -40,6 +40,7 @@ linters:
     - gofmt
     - gofumpt
     - goimports
+    - mnd
     - gosec
     - gosimple
     - govet
@@ -48,7 +49,6 @@ linters:
     - lll
     - maintidx
     - misspell
-    - mnd
     - nakedret
     - nestif
     - nilerr
@@ -70,10 +70,21 @@ linters:
 # all available settings of specific linters
 linters-settings:
   errcheck:
-    ignore: ""
+    # Report about not checking of errors in type assertions: `a := b.(MyStruct)`.
+    # Such cases aren't reported by default.
+    # Default: false
+    check-type-assertions: true
+    # report about assignment of errors to blank identifier: `num, _ := strconv.Atoi(numStr)`.
+    # Such cases aren't reported by default.
+    # Default: false
+    check-blank: true
+    # To disable the errcheck built-in exclude list.
+    # See `-excludeonly` option in https://github.com/kisielk/errcheck#excluding-functions for details.
+    # Default: false
+    disable-default-exclusions: true
   govet:
     # report about shadowed variables
-    shadow: true
+    enable-all: true
   gofmt:
     # simplify code: gofmt with `-s` option, true by default
     simplify: true
@@ -105,7 +116,7 @@ linters-settings:
   lll:
     # max line length, lines longer will be reported. Default is 120.
     # '\t' is counted as 1 character by default, and can be changed with the tab-width option
-    line-length: 100
+    line-length: 110
     # tab width in spaces. Default to 1.
     tab-width: 1
   unused:
@@ -164,8 +175,8 @@ linters-settings:
 issues:
   max-issues-per-linter: 20
   max-same-issues: 20
-  # Excluding configuration per-path and per-linter
-  # exclude-rules:
+    # Excluding configuration per-path and per-linter
+    # exclude-rules:
     # Exclude some linters from running on tests files.
     # - path: _test\.go
     #   linters:
