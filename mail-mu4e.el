@@ -359,6 +359,7 @@
 						"/psql-hackers"
 						"/red_cordoba"
 						"/redis-db"
+						"/republica"
 						"/ritholution"
 						"/ritho.net"
 						"/rss"
