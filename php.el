@@ -24,10 +24,3 @@
 
 (use-package phpunit
   :ensure t)
-
-;; (use-package lsp-mode
-;;   :ensure t
-;;   :commands (lsp lsp-deferred)
-;;   :hook (go-mode . lsp-deferred)
-;;   :config
-;; )

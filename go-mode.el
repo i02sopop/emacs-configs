@@ -143,7 +143,7 @@
 	(add-hook 'before-save-hook 'gofmt-before-save))
 
   (define-key go-mode-map (kbd "C-x C-g g") 'gci-organize-imports)
-  (add-hook 'before-save-hook 'lsp-go-install-save-hooks))
+  (add-hook 'go-mode-hook #'lsp-go-install-save-hooks))
 
 ;; provides fancier overlays.
 (use-package lsp-ui
