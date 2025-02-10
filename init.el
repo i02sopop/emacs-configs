@@ -2,6 +2,7 @@
 (load "~/.emacs.d/custom.el")
 (load "~/.emacs.d/ritho-theme.el")
 
+(load "~/.emacs.d/project.el")
 (load "~/.emacs.d/flycheck.el")
 (load "~/.emacs.d/autocomplete.el")
 (load "~/.emacs.d/flyspell.el")
@@ -24,6 +25,7 @@
 (load "~/.emacs.d/gitlab.el")
 (load "~/.emacs.d/howm.el")
 (load "~/.emacs.d/asciidoc.el")
+(load "~/.emacs.d/json.el")
 
 (load "~/.emacs.d/secrets.el")
 (load-theme 'ritho)

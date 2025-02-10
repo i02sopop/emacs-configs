@@ -40,18 +40,32 @@
 			  (auto-complete-mode -1)
 			  (hs-minor-mode 1)
 			  (hs-hide-all)))
+
+  (defun project-find-go-module (dir)
+	(when-let ((root (locate-dominating-file dir "go.mod")))
+      (cons 'go-module root)))
+
+  (cl-defmethod project-root ((project (head go-module)))
+	(cdr project))
+
+  (add-hook 'project-find-functions #'project-find-go-module)
   )
 
 (use-package go-projectile
   :ensure t)
+
 (use-package go-rename
   :ensure t)
+
 (use-package go-stacktracer
   :ensure t)
+
 (use-package go-impl
   :ensure t)
+
 (use-package go-rename
   :ensure t)
+
 (use-package go-expr-completion
   :ensure t)
 
@@ -183,7 +197,26 @@
   :config
   (add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
   (add-hook 'c-mode-hook 'eglot-ensure)
-  (add-hook 'c++-mode-hook 'eglot-ensure))
+  (add-hook 'c++-mode-hook 'eglot-ensure)
+  ;; (add-hook 'go-mode-hook 'eglot-ensure)
+
+  ;; Optional: install eglot-format-buffer as a save hook.
+  ;; The depth of -10 places this before eglot's willSave notification,
+  ;; so that that notification reports the actual contents that will be saved.
+  ;; (defun eglot-format-buffer-before-save ()
+  ;; 	(add-hook 'before-save-hook #'eglot-format-buffer -10 t))
+  ;; (add-hook 'go-mode-hook #'eglot-format-buffer-before-save)
+
+  ;; (setq-default eglot-workspace-configuration
+  ;; 				'((:gopls .
+  ;; 						  ((staticcheck . t)
+  ;; 						   (matcher . "CaseSensitive")))))
+
+  ;; (add-hook 'before-save-hook
+  ;; 			(lambda ()
+  ;; 			  (call-interactively 'eglot-code-action-organize-imports))
+  ;; 			nil t)
+  )
 
 (use-package ccls
   :ensure t

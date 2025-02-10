@@ -121,7 +121,9 @@
 				("p" "Phone call" entry (file "~/org/agenda/refile.org")
 				 "* PHONE %? :PHONE:\n%U" :clock-in t :clock-resume t)
 				("h" "Habit" entry (file "~/org/agenda/habits.org")
-				 "* NEXT %?\n%U\n%a\nSCHEDULED: %t .+1d\n:PROPERTIES:\n:ORDERED: t\n:LOGGING: TODO(!) NEXT(!) REVIEW(!) STARTED(!) WAITING(!) DELEGATED(!) HOLD(!) DONE(!) DEFERRED(!) CANCELLED(!) PHONE(!) PROJECT(!) FINISHED(!)\n:DESCRIPTION: -\n:ASSIGNED: ritho\n:CREATION_DATE: %U\n:NOTES: -\n:STYLE: habits\n:REPEAT_TO_STATE: NEXT\n:END:\n"))))
+				 "* NEXT %?\n%U\n%a\nSCHEDULED: %t .+1d\n:PROPERTIES:\n:ORDERED: t\n:LOGGING: TODO(!) NEXT(!) REVIEW(!) STARTED(!) WAITING(!) DELEGATED(!) HOLD(!) DONE(!) DEFERRED(!) CANCELLED(!) PHONE(!) PROJECT(!) FINISHED(!)\n:DESCRIPTION: -\n:ASSIGNED: ritho\n:CREATION_DATE: %U\n:NOTES: -\n:STYLE: habits\n:REPEAT_TO_STATE: NEXT\n:END:\n")
+				("f" "Follow up" entry (file+olp "todo/todo.org" "Email" "Follow Up")
+				 "* TODO Follow up with %(eval sent-message-to) on [[mu4e:msgid:%(eval sent-message-id)][%(eval sent-subject)]] SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+3d\")) %i"))))
 
   ;; Calendar
   (setq calendar-week-start-day 1
@@ -592,6 +594,29 @@
 
   (add-hook 'org-mode-hook 'visual-line-mode)
 
+  (add-hook 'message-sent-hook #'my/org-capture-sent-mail)
+  (defun my/org-capture-sent-mail ()
+    "Prepare to capture sent mail after window configuration is reset."
+    (let* ((sent-message-id
+          (replace-regexp-in-string
+           "[<>]" "" (message-fetch-field "Message-Id")))
+           (sent-message-to
+            (replace-regexp-in-string " <.*>" "" (message-fetch-field "To")))
+         (sent-subject (or (message-fetch-field "Subject") "No subject")))
+      (org-capture nil "efu")
+      (add-hook 'mu4e-compose-post-hook #'my/pop-to-buffer-org-capture-mail 99)))
+
+  (defun my/pop-to-buffer-org-capture-mail ()
+    (pop-to-buffer
+     (car (match-buffers
+           (lambda (buffer)
+             (equal "efu"
+                    (plist-get
+                     (buffer-local-value
+                      'org-capture-current-plist buffer)
+                     :key))))))
+    (remove-hook 'mu4e-compose-post-hook #'my/pop-to-buffer-org-capture-mail))
+
   ;;;;;;;;;;;;;;;;;;;;;;;;
   ;; end of org config. ;;
   ;;;;;;;;;;;;;;;;;;;;;;;;
@@ -634,6 +659,9 @@
   (setq org-pomodoro-keep-killed-pomodoro-time t)
   (setq org-pomodoro-length 50)
   (setq org-pomodoro-start-sound-p t))
+
+(use-package pomodoro
+  :ensure t)
 
 (use-package org-present
   :ensure t)

@@ -9,3 +9,6 @@
 
 (use-package gitlab-pipeline
   :ensure t)
+
+(use-package pr-review
+  :ensure t)

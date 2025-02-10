@@ -13,3 +13,6 @@
   (setq cperl-tabs-always-indent t)
   (linum-mode 1)
   )
+
+(use-package perl-doc
+  :ensure t)
