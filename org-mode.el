@@ -829,3 +829,8 @@
 
 (use-package org-roam-ui
   :ensure t)
+
+(use-package org-contrib
+  :ensure t
+  :config
+  (require 'org-checklist))
