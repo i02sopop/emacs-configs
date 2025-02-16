@@ -567,6 +567,9 @@
   ;; Rebuild the reminders everytime the agenda is displayed
   (add-hook 'org-finalize-agenda-hook 'rt/org-agenda-to-appt 'append)
 
+  (add-hook 'org-agenda-mode-hook
+			(lambda () (setq-local tab-width 8)) 'append)
+
   ;; This is at the end of my .emacs - so appointments are set up when Emacs starts
   (rt/org-agenda-to-appt)
 
