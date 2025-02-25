@@ -141,6 +141,8 @@
 (global-set-key (kbd "M-p") 'previous-buffer)
 (global-set-key (kbd "M-n") 'next-buffer)
 
+;; (global-set-key (kbd "\C-cvv") 'customize-variable)
+
 (require 'server)
 (setq server-name
 	  (replace-regexp-in-string "\n$" "" (shell-command-to-string "current_project_name")))

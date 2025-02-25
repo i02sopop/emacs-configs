@@ -68,3 +68,17 @@ Uses `current-date-time-format' for the formatting the date/time."
   (revert-buffer :ignore-auto :noconfirm))
 
 (global-set-key "\C-c\C-l" 'revert-buffer-no-confirm)
+
+;;;;;;;;;;;;;;;;;;;;
+;; HTML functions ;;
+;;;;;;;;;;;;;;;;;;;;
+
+(defun html-entitify-region ()
+  (interactive)
+  (save-excursion
+    (if (> (point) (mark))
+        (exchange-point-and-mark))
+    (replace-string-in-region "&" "&amp;" (point) (mark))
+    (replace-string-in-region "<" "&lt;" (point) (mark))
+    (replace-string-in-region ">" "&gt;" (point) (mark))
+    (replace-string-in-region "\"" "&quot;" (point) (mark))))

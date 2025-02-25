@@ -26,6 +26,7 @@
 (load "~/.emacs.d/howm.el")
 (load "~/.emacs.d/asciidoc.el")
 (load "~/.emacs.d/json.el")
+;; (load "~/.emacs.d/ews.el")
 
 (load "~/.emacs.d/secrets.el")
 (load-theme 'ritho)
