@@ -57,3 +57,6 @@
 
 (use-package po-mode
   :ensure t)
+
+(use-package iedit
+  :ensure t)
