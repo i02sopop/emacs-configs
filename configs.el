@@ -74,6 +74,8 @@
 (tool-bar-mode 0)
 (menu-bar-mode 0)
 (scroll-bar-mode 0)
+(setq scroll-conservatively 10
+      scroll-margin 15)
 
 ;; Interactively do things.
 (ido-mode 1)

@@ -821,11 +821,11 @@
 		   :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))))
   )
 
-(use-package org-roam-ql
-  :ensure t)
+;; (use-package org-roam-ql
+;;   :ensure t)
 
-(use-package org-roam-ql-ql
-  :ensure t)
+;; (use-package org-roam-ql-ql
+;;   :ensure t)
 
 (use-package org-roam-timestamps
   :ensure t)

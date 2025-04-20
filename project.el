@@ -1,5 +1,5 @@
-(use-package bookmark-in-project
-  :ensure t)
+;; (use-package bookmark-in-project
+;;   :ensure t)
 
 (use-package eproject
     :ensure t)

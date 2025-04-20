@@ -1,3 +1,11 @@
+(use-package transient
+  :ensure t
+  )
+
+(use-package transient-extras
+  :ensure t
+  )
+
 (use-package magit
   :ensure t
   :config
@@ -7,8 +15,8 @@
 ;;   :ensure t
 ;;   :hook (magit-mode . magit-delta-mode))
 
-(use-package magit-org-todos
-  :ensure t)
+;; (use-package magit-org-todos
+;;  :ensure t)
 
 (custom-set-variables
  '(ediff-diff-options "-w")
