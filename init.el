@@ -16,6 +16,7 @@
 ;; (load "~/.emacs.d/less-mode.el")
 (load "~/.emacs.d/go-mode.el")
 ;; (load "~/.emacs.d/perl-mode.el")
+(load "~/.emacs.d/python.el")
 ;; (load "~/.emacs.d/latex.el")
 (load "~/.emacs.d/markdown.el")
 (load "~/.emacs.d/word-count.el")
