@@ -53,6 +53,12 @@
 ;;   :config
 ;;   (global-set-key "\C-ce" 'ebib))
 
+(use-package latex-preview-pane
+  :ensure t)
+
+(use-package yatex
+  :ensure t)
+
 (use-package latex-extra
   :ensure t
   :config
