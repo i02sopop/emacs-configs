@@ -11,3 +11,9 @@
 /auto-save-list/
 /elpa/
 /.lsp-session*
+/.mc-lists.el
+/history
+/semanticdb/
+/srecode-map.el
+/tramp
+/transient/

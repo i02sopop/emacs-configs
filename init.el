@@ -29,6 +29,7 @@
 ;; (load "~/.emacs.d/exwm.el")
 ;; (load "~/.emacs.d/ews.el")
 (load "~/.emacs.d/git-functions.el")
+(load "~/.emacs.d/gpt.el")
 
 (load "~/.emacs.d/secrets.el")
 (load-theme 'ritho)
