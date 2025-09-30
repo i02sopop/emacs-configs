@@ -128,8 +128,6 @@
 					  (setq  user-mail-address "ritho@ritho.es"))
 					 ((cpb-mu4e-is-message-to msg (list "i02sopop@ritho.es"))
 					  (setq  user-mail-address "i02sopop@ritho.es"))
-					 ((cpb-mu4e-is-message-to msg (list "palvarezdesotomayor@paradigmadigital.com"))
-					  (setq  user-mail-address "palvarezdesotomayor@paradigmadigital.com"))
 					 ((cpb-mu4e-is-message-to msg "i02sopop@gmail.com")
 					  (setq  user-mail-address "i02sopop@gmail.com"))
 					 ((cpb-mu4e-is-message-to msg "palvarez@vintagram.es")
@@ -204,8 +202,7 @@
 		  "ritho@ritholution.eu"
 		  "palvarez@ritho.es"
 		  "ritho@ritho.es"
-		  "i02sopop@ritho.es"
-		  "palvarezdesotomayor@paradigmadigital.com"))
+		  "i02sopop@ritho.es"))
 
   (setq user-mail-address "palvarez@ritho.net"
 		user-full-name  "Pablo Alvarez de Sotomayor Posadillo")
@@ -222,11 +219,12 @@
 								 (:maildir "/entrada" :key ?i)
 								 (:maildir "/rss/lwn" :key ?l)
 								 (:maildir "/rss/meneame" :key ?m)
-								 (:maildir "/paradigma" :key ?p)
+								 (:maildir "/acronis" :key ?w)
 								 (:maildir "/rehuerta" :key ?r)
 								 (:maildir "/sent-mail" :key ?s)))
 
-  (setq mu4e-maildirs '("/aula-linux"
+  (setq mu4e-maildirs '("/acronis"
+						"/aula-linux"
 						"/autoconf"
 						"/automake"
 						"/automake-commit"
