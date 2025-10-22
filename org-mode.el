@@ -21,7 +21,7 @@
   (defvar rt/organization-task-id "eb155a82-92b2-4f25-a3c6-0304591af2f9")
 
   ;; Load custom functions
-  (load "~/.emacs.d/org-mode-functions.el")
+  (load (concat (getenv "PWD") "/org-mode-functions.el"))
 
   ;; Custom Key Bindings
   (global-set-key (kbd "\C-ca") 'org-agenda)
@@ -213,7 +213,7 @@
   ;; Include current clocking task in clock reports
   (setq org-clock-report-include-clocking-task t)
   (setq rt/keep-clock-running nil)
-  (setq org-clock-sound "~/.emacs.d/notify.wav")
+  (setq org-clock-sound (concat (getenv "PWD") "/notify.wav"))
 
   ;; Allow setting single tags without the menu
   (setq org-fast-tag-selection-single-key (quote expert))

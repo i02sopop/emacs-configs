@@ -98,7 +98,7 @@
 (setq show-paren-delay 0)
 (show-paren-mode)
 
-(setq custom-file "~/.emacs.d/custom.el")
+(setq custom-file (concat (getenv "PWD") "/custom.el"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Postscript configurations ;;
@@ -126,7 +126,7 @@
 (set-default 'truncate-lines t)
 (global-set-key (kbd "\C-ct") 'toggle-truncate-lines)
 
-(load "~/.emacs.d/functions.el")
+(load (concat (getenv "PWD") "/functions.el"))
 
 (global-set-key (kbd "\C-cbs") 'bookmark-set-saved)
 (global-set-key (kbd "\C-cbj") 'bookmark-jump-saved)
