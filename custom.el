@@ -4,7 +4,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("1f0324928d94805ffb9b773ed4af86301d1829f878fc96402e23bdaf11d95bb5"
+   '("02236042b19be0b1ae78c2a76556c3da67ab2fc5431a4990cf7a817d15128337"
+	 "1f0324928d94805ffb9b773ed4af86301d1829f878fc96402e23bdaf11d95bb5"
 	 default))
  '(ediff-diff-options "-w")
  '(ediff-split-window-function 'split-window-horizontally)

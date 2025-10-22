@@ -52,3 +52,4 @@
  '(isearch-secondary ((t nil))))
 
 (provide-theme 'ritho)
+(add-to-list 'custom-theme-load-path config-dir)
