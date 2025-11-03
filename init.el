@@ -3,6 +3,7 @@
 (load (concat config-dir "/custom.el"))
 (load (concat config-dir "/ritho-theme.el"))
 
+(load (concat config-dir "/env.el"))
 (load (concat config-dir "/project.el"))
 (load (concat config-dir "/flycheck.el"))
 (load (concat config-dir "/autocomplete.el"))
@@ -31,6 +32,7 @@
 ;; (load (concat config-dir "/ews.el"))
 (load (concat config-dir "/git-functions.el"))
 (load (concat config-dir "/gpt.el"))
+(load (concat config-dir "/copilot-configs.el"))
 
 (load (concat config-dir "/secrets.el"))
 (load-theme 'ritho)
