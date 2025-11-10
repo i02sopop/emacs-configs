@@ -178,6 +178,7 @@
 
 (eval-after-load 'hideshow
   '(progn
+	 (global-set-key (kbd "\C-x <C-tab>") 'hs-show-all)
 	 (global-set-key (kbd "<C-tab>") 'hs-toggle-hiding)
 	 (global-set-key (kbd "\C-c+") 'hs-show-block)
 	 (global-set-key (kbd "\C-c-") 'hs-hide-block)))

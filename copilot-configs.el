@@ -8,6 +8,6 @@
   ;; (setq copilot-lsp-settings '(:github-enterprise (:uri "https://github.com")))
   (add-to-list 'copilot-major-mode-alist '("enh-go" . "go"))
 
-  (define-key copilot-mode-map (kbd "<C-tab>") 'copilot-accept-completion)
+  (define-key copilot-mode-map (kbd "<C-return>") 'copilot-accept-completion)
   )
 
