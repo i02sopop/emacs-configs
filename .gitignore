@@ -19,3 +19,6 @@
 /transient/
 
 /.cache/
+
+/codeium.el/
+/codeium/
