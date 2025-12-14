@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;; Codeium configuration for Emacs
 ;; Clone the codeium.el repository from https://github.com/Exafunction/codeium.el and set the path accordingly.
 ;; Install the lsp by calling M-x codeium-install

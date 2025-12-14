@@ -1,4 +1,4 @@
-;; Env vars
+;; Env vars  -*- lexical-binding: t; -*-
 
 (use-package load-env-vars
   :ensure t)

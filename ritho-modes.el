@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;;; $Id$
 (defun english-mode()
   "English Mode"

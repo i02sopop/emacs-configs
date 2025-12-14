@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (defun emacs-solo/vc-git-reflog ()
   "Show git reflog in a new buffer with ANSI colors and custom keybindings."
   (interactive)

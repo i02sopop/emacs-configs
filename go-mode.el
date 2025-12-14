@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (use-package go-add-tags
   :ensure t)
 (use-package go-autocomplete

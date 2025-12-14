@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (setq config-dir "~/.emacs.d.default")
 (load (concat config-dir "/configs.el"))
 (load (concat config-dir "/custom.el"))

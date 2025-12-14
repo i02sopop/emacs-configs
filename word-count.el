@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (use-package wc-mode
   :ensure t
   :config

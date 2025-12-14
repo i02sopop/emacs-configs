@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (use-package dash
   :ensure dash-functional
   :config

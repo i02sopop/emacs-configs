@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (require 'package)
 (setq package-archives
 	  '(("ELPA" . "http://tromey.com/elpa/")
@@ -151,3 +153,14 @@
 
 (unless (server-running-p (symbol-value 'server-name))
   (server-start))
+
+;; Add lexical binding cookie to temporary buffers
+
+(defun my-add-lexical-binding-cookie ()
+  "Add lexical binding cookie to a temporary buffer."
+  (when (eq major-mode 'fundamental-mode)
+    (save-excursion
+      (goto-char (point-min))
+      (insert ";;; -*- lexical-binding: t -*-\n"))))
+
+(add-hook 'temp-buffer-setup-hook 'my-add-lexical-binding-cookie)

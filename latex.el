@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (use-package tex
   :ensure auctex
   :config
@@ -56,8 +58,8 @@
 (use-package latex-preview-pane
   :ensure t)
 
-(use-package yatex
-  :ensure t)
+;; (use-package yatex
+;;   :ensure t)
 
 (use-package latex-extra
   :ensure t

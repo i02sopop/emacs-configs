@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (deftheme ritho
   "ritho")
 

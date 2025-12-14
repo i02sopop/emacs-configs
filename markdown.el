@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (use-package gh-md :ensure t)
 (use-package markdown-mode :ensure t)
 (use-package markdown-toc :ensure t)

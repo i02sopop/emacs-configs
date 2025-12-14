@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (use-package ace-flyspell
   :ensure t
   :config

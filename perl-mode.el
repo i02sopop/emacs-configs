@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;; Use cperl-mode instead of the default perl-mode
 (add-to-list 'auto-mode-alist '("\\.\\([pP][Llm]\\|al\\)\\'" . cperl-mode))
 (add-to-list 'interpreter-mode-alist '("perl" . cperl-mode))

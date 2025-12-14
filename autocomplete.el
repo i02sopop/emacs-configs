@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (use-package ac-c-headers
   :ensure t
   :config
