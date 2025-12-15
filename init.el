@@ -35,7 +35,7 @@
 (load (concat config-dir "/git-functions.el"))
 (load (concat config-dir "/gpt.el"))
 (load (concat config-dir "/copilot-configs.el"))
-(load (concat config-dir "/codeium-config.el"))
+;; (load (concat config-dir "/codeium-config.el"))
 
 (load (concat config-dir "/secrets.el"))
 (load-theme 'ritho)

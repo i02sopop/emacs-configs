@@ -14,41 +14,7 @@
  '(ediff-split-window-function 'split-window-horizontally)
  '(ediff-window-setup-function 'ediff-setup-windows-plain)
  '(org-trello-current-prefix-keybinding "C-c o")
- '(package-selected-packages
-   '(ac-c-headers ac-capf ac-clang ac-etags ac-helm ac-html
-				  ac-html-bootstrap ac-html-csswatcher ac-ispell
-				  ac-js2 ac-math ac-php ac-slime ac-sly ace-flyspell
-				  adoc-mode anaconda-mode asciidoc auctex-latexmk
-				  auto-complete-auctex auto-dictionary bbdb-ext
-				  bbdb2erc bibretrieve bibslurp bibtex-utils calfw-cal
-				  calfw-org ccls company copilot dash-functional
-				  emacs-everywhere epresent eproject
-				  find-file-in-project find-file-in-repository
-				  flex-autopair flycheck flymake-php flymake-phpcs
-				  flymd flyspell-correct-popup flyspell-popup gh-md
-				  go-add-tags go-autocomplete go-complete go-errcheck
-				  go-expr-completion go-fill-struct go-gen-test
-				  go-gopath go-imenu go-impl go-imports go-projectile
-				  go-stacktracer go-tag godoctor golint gotest gpt
-				  ibuffer-project iedit isearch-project jedi
-				  js2-refactor json-mode json-navigator json-reformat
-				  jsonian kkp latex-extra latex-preview-pane
-				  load-env-vars lsp-jedi lsp-ui magit magit-popup
-				  markdown-toc markdownfmt multi-project org-ac
-				  org-agenda-property org-alert org-analyzer org-books
-				  org-bullets org-clock-today org-context org-contrib
-				  org-ehtml org-elisp-help org-journal org-make-toc
-				  org-mime org-notebook org-notify org-pomodoro
-				  org-present org-projectile org-review
-				  org-roam-timestamps org-roam-ui org-super-agenda
-				  org-table-comment org-table-sticky-header org-wc
-				  otpp ox-asciidoc perject php-refactor-mode phps-mode
-				  phpstan phpunit po-mode pomodoro popup-complete
-				  project-abbrev project-butler
-				  project-local-variables project-mode-line-tag
-				  project-persist project-rootfile project-tab-groups
-				  project-tasks project-treemacs srefactor
-				  transient-extras wc-mode yatex))
+ '(package-selected-packages nil)
  '(package-vc-selected-packages
    '((copilot :url "https://github.com/copilot-emacs/copilot.el" :branch
 			  "main"))))
