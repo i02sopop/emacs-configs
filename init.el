@@ -33,6 +33,7 @@
 ;; (load (concat config-dir "/exwm.el"))
 ;; (load (concat config-dir "/ews.el"))
 (load (concat config-dir "/git-functions.el"))
+(load (concat config-dir "/mcp.el"))
 (load (concat config-dir "/gpt.el"))
 (load (concat config-dir "/copilot-configs.el"))
 ;; (load (concat config-dir "/codeium-config.el"))
