@@ -1,7 +1,10 @@
 ;; -*- lexical-binding: t; -*-
 
 (use-package gpt
-  :ensure t)
+  :ensure t
+  :config
+  (setq gpt-api-type 'openai)
+  (setq gpt-model "gpt-5.2"))
 
 ;; (use-package le-gpt
 ;;   ;; suggested keybindings
