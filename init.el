@@ -19,6 +19,7 @@
 (load (concat config-dir "/mark-multiple.el"))
 ;; (load (concat config-dir "/less-mode.el"))
 (load (concat config-dir "/go-mode.el"))
+(load (concat config-dir "/rust-mode.el"))
 ;; (load (concat config-dir "/perl-mode.el"))
 (load (concat config-dir "/python.el"))
 (load (concat config-dir "/latex.el"))
@@ -36,7 +37,7 @@
 (load (concat config-dir "/mcp.el"))
 (load (concat config-dir "/gpt.el"))
 (load (concat config-dir "/copilot-configs.el"))
-;; (load (concat config-dir "/codeium-config.el"))
+(load (concat config-dir "/codeium-config.el"))
 
 (load (concat config-dir "/secrets.el"))
 (load-theme 'ritho)

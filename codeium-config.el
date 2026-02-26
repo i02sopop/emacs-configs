@@ -5,6 +5,14 @@
 ;; Install the lsp by calling M-x codeium-install
 (load (concat config-dir "/codeium.el/codeium.el"))
 
+;; Company
+(use-package company
+  :hook (after-init . global-company-mode)
+  :custom
+  (company-idle-delay 0.1)
+  (company-minimum-prefix-length 1)
+  (company-tooltip-align-annotations t))
+
 (use-package codeium
     ;; if you use straight
     ;; :straight '(:type git :host github :repo "Exafunction/codeium.el")
@@ -33,6 +41,7 @@
 
     ;; :defer t ;; lazy loading, if you want
     :config
+	(setq company-selection-wrap-around t)
     (setq use-dialog-box nil) ;; do not use popup boxes
 
     ;; if you don't want to use customize to save the api-key
@@ -66,4 +75,51 @@
             (buffer-substring-no-properties (max (- (point) 3000) (point-min)) (point))))
 
 	(setq codeium/document/text 'my-codeium/document/text)
-    (setq codeium/document/cursor_offset 'my-codeium/document/cursor_offset))
+    (setq codeium/document/cursor_offset 'my-codeium/document/cursor_offset)
+
+	(add-hook 'go-mode-hook
+			  (lambda ()
+				(setq-local completion-at-point-functions '(codeium-completion-at-point))
+				(setq-local codeium/editor_options/tab_size 4)
+				(setq-local codeium/editor_options/indent_style "space")
+				(setq-local codeium/editor_options/indent_size 4)
+				(setq-local codeium/editor_options/insert_spaces t)
+				(setq-local codeium/editor_options/trim_trailing_whitespace t)
+				(setq-local codeium/editor_options/trim_final_newlines t)
+				(setq-local codeium/editor_options/ensure_newline_at_eof_on_save t)
+				(setq-local codeium/editor_options/format_on_save t)
+				(setq-local codeium/editor_options/format_on_save_mode "modifications")
+				(setq-local codeium/editor_options/format_on_save_timeout_ms 1000)
+				(setq-local codeium/editor_options/prefer_single_line_completion t)
+				(setq-local codeium/editor_options/trigger_signature_help_on_typing t)
+				(setq-local codeium/editor_options/accept_completion_on_enter "off")
+				(setq-local codeium/editor_options/accept_completion_on_tab t)
+				(setq-local codeium/editor_options/suggest_selection "recentlyUsedByPrefix")
+				(setq-local codeium/editor_options/enable_ghost_text t)
+				(setq-local codeium/editor_options/enable_inline_suggestions t)
+				(setq-local codeium/editor_options/inline_suggestions_mode "prefix")
+				(setq-local codeium/editor_options/enable_prevent_overwrite t)
+				(setq-local codeium/editor_options/enable_show_completion_additional_text_edits t)
+				(setq-local codeium/editor_options/enable_show_completion_commit_characters t)
+				(setq-local codeium/editor_options/enable_show_completion_confidence t)
+				(setq-local codeium/editor_options/enable_show_completion_deprecated t)
+				(setq-local codeium/editor_options/enable_show_completion_detail t)
+				(setq-local codeium/editor_options/enable_show_completion_documentation t)
+				(setq-local codeium/editor_options/enable_show_completion_filter_text t)
+				(setq-local codeium/editor_options/enable_show_completion_insert_text t)
+				(setq-local codeium/editor_options/enable_show_completion_insert_text_rules t)
+				(setq-local codeium/editor_options/enable_show_completion_kind t)
+				(setq-local codeium/editor_options/enable_show_completion_language t)
+				(setq-local codeium/editor_options/enable_show_completion_metadata t)
+				(setq-local codeium/editor_options/enable_show_completion_preselect t)
+				(setq-local codeium/editor_options/enable_show_completion_range t)
+				(setq-local codeium/editor_options/enable_show_completion_reason t)
+				(setq-local codeium/editor_options/enable_show_completion_snippet t)
+				(setq-local codeium/editor_options/enable_show_completion_sort_text t)
+				(setq-local codeium/editor_options/enable_show_completion_source t)
+				(setq-local codeium/editor_options/enable_show_completion_tags t)
+				(setq-local codeium/editor_options/enable_show_full_signature t)
+				(setq-local codeium/editor_options/enable_show_return_type t)
+				(setq-local codeium/editor_options/enable_show_signature_help t)
+				))
+	)
