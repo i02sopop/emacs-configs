@@ -112,6 +112,10 @@
   (define-key c-mode-map (kbd "C-c C-r") 'lsp-find-references)
   (define-key c-mode-map (kbd "C-c C-b") 'pop-tag-mark)       ; Return from whence you came
 
+  (define-key rust-mode-map (kbd "C-c C-j") 'lsp-find-definition)
+  (define-key rust-mode-map (kbd "C-c C-r") 'lsp-find-references)
+  (define-key rust-mode-map (kbd "C-c C-b") 'pop-tag-mark)       ; Return from whence you came
+
   (setq lsp-keymap-prefix "C-c l")
   (define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
   (setq lsp-file-watch-threshold 15000)
