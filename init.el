@@ -37,7 +37,7 @@
 ;; (load (concat config-dir "/mcp.el"))
 (load (concat config-dir "/gpt.el"))
 (load (concat config-dir "/copilot-configs.el"))
-(load (concat config-dir "/codeium-config.el"))
+;; (load (concat config-dir "/codeium-config.el"))
 
 (load (concat config-dir "/secrets.el"))
 (load-theme 'ritho)
