@@ -2,26 +2,37 @@
 
 (use-package go-add-tags
   :ensure t)
+
 (use-package go-autocomplete
   :ensure t)
+
 (use-package go-complete
   :ensure t)
+
 (use-package go-eldoc
   :ensure t)
+
 (use-package go-errcheck
   :ensure t)
+
 (use-package go-fill-struct
   :ensure t)
+
 (use-package go-gen-test
   :ensure t)
+
 (use-package go-gopath
   :ensure t)
+
 (use-package go-guru
   :ensure t)
+
 (use-package go-imenu
   :ensure t)
+
 (use-package go-imports
   :ensure t)
+
 (use-package go-mode
   :ensure t
   :config

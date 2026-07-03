@@ -19,7 +19,16 @@
   :ensure t)
 
 (use-package rust-mode
-  :ensure t)
+  :ensure t
+  :config
+  (add-hook 'rust-mode-hook
+			(defun rust-init-config ()
+			  "Set the init configuration for rust"
+			  (display-line-numbers-mode)
+			  (auto-complete-mode -1)
+			  (hs-minor-mode 1)
+			  (hs-hide-all)))
+  )
 
 (use-package rustic
   :ensure t)
