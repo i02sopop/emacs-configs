@@ -55,7 +55,7 @@
 			  (hs-hide-all)))
 
   (defun project-find-go-module (dir)
-	(when-let ((root (locate-dominating-file dir "go.mod")))
+	(when-let* ((root (locate-dominating-file dir "go.mod")))
       (cons 'go-module root)))
 
   (cl-defmethod project-root ((project (head go-module)))
@@ -122,10 +122,6 @@
   (define-key c-mode-map (kbd "C-c C-j") 'lsp-find-definition)
   (define-key c-mode-map (kbd "C-c C-r") 'lsp-find-references)
   (define-key c-mode-map (kbd "C-c C-b") 'pop-tag-mark)       ; Return from whence you came
-
-  (define-key rust-mode-map (kbd "C-c C-j") 'lsp-find-definition)
-  (define-key rust-mode-map (kbd "C-c C-r") 'lsp-find-references)
-  (define-key rust-mode-map (kbd "C-c C-b") 'pop-tag-mark)       ; Return from whence you came
 
   (setq lsp-keymap-prefix "C-c l")
   (define-key lsp-mode-map (kbd "C-c l") lsp-command-map)

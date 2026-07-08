@@ -28,6 +28,10 @@
 			  (auto-complete-mode -1)
 			  (hs-minor-mode 1)
 			  (hs-hide-all)))
+
+  (define-key rust-mode-map (kbd "C-c C-j") 'lsp-find-definition)
+  (define-key rust-mode-map (kbd "C-c C-r") 'lsp-find-references)
+  (define-key rust-mode-map (kbd "C-c C-b") 'pop-tag-mark)       ; Return from whence you came
   )
 
 (use-package rustic
