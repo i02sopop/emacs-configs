@@ -125,7 +125,7 @@
 				("h" "Habit" entry (file "~/org/agenda/habits.org")
 				 "* NEXT %?\n%U\n%a\nSCHEDULED: %t .+1d\n:PROPERTIES:\n:ORDERED: t\n:LOGGING: TODO(!) NEXT(!) REVIEW(!) STARTED(!) WAITING(!) DELEGATED(!) HOLD(!) DONE(!) DEFERRED(!) CANCELLED(!) PHONE(!) PROJECT(!) FINISHED(!)\n:DESCRIPTION: -\n:ASSIGNED: ritho\n:CREATION_DATE: %U\n:NOTES: -\n:STYLE: habits\n:REPEAT_TO_STATE: NEXT\n:END:\n")
 				("f" "Follow up" entry (file+olp "~/org/agenda/todo.org" "Email" "Follow Up")
-				 "* TODO Follow up with %(eval sent-message-to) on [[mu4e:msgid:%(eval sent-message-id)][%(eval sent-subject)]] SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+3d\")) %i"))))
+				 "* TODO Follow up with %(org-entry-get nil \"sent-message-to\") on [[mu4e:msgid:%(org-entry-get nil \"sent-message-id\")][%(org-entry-get nil \"sent-subject\")]] SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+3d\")) %i"))))
 
   ;; Calendar
   (setq calendar-week-start-day 1
@@ -602,14 +602,12 @@
   (add-hook 'message-sent-hook #'my/org-capture-sent-mail)
   (defun my/org-capture-sent-mail ()
     "Prepare to capture sent mail after window configuration is reset."
-    (let* ((sent-message-id
-          (replace-regexp-in-string
-           "[<>]" "" (message-fetch-field "Message-Id")))
-           (sent-message-to
-            (replace-regexp-in-string " <.*>" "" (message-fetch-field "To")))
-         (sent-subject (or (message-fetch-field "Subject") "No subject")))
-      (org-capture nil "f")
-      (add-hook 'mu4e-compose-post-hook #'my/pop-to-buffer-org-capture-mail 99)))
+	(org-store-link-props
+	 :sent-message-id (replace-regexp-in-string "[<>]" "" (message-fetch-field "Message-Id"))
+	 :sent-message-to (replace-regexp-in-string " <.*>" "" (message-fetch-field "To"))
+	 :sent-subject (or (message-fetch-field "Subject") "No subject"))
+    (org-capture nil "f")
+    (add-hook 'mu4e-compose-post-hook #'my/pop-to-buffer-org-capture-mail 99))
 
   (defun my/pop-to-buffer-org-capture-mail ()
     (pop-to-buffer
