@@ -38,6 +38,8 @@
 ;; (load (concat config-dir "/gpt.el"))
 (load (concat config-dir "/copilot-configs.el"))
 ;; (load (concat config-dir "/codeium-config.el"))
+;; (load (concat config-dir "/claude.el"))
+(load (concat config-dir "/codex.el"))
 
 (load (concat config-dir "/secrets.el"))
 (load-theme 'ritho)

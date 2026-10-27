@@ -14,10 +14,13 @@
  '(ediff-split-window-function 'split-window-horizontally)
  '(ediff-window-setup-function 'ediff-setup-windows-plain)
  '(org-trello-current-prefix-keybinding "C-c o")
- '(package-selected-packages nil)
+ '(package-selected-packages
+   '(claude-code codex-ide eat ghostel inheritenv monet vtab vterm
+				 vterm-editor vterm-hotkey vterm-toggle vtm))
  '(package-vc-selected-packages
-   '((copilot :url "https://github.com/copilot-emacs/copilot.el" :branch
-			  "main"))))
+   '((monet :url "https://github.com/stevemolitor/monet")
+	 (copilot :url "https://github.com/copilot-emacs/copilot.el"
+			  :branch "main"))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
